@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">ue236_groupe1_semaine2</string>
+    <string name="app_name">My Application</string>
+    <string name="contact_1">Marion Lombardi</string>
+    <string name="contact_2">Vincent Pichot</string>
+    <string name="contact_3">Mélissa Latouille</string>
+    <string name="contact_4">Emmanuel Michaud</string>
+    <string name="bouton_1">Valider</string>
+    <string name="bouton_2">Validation</string>
+    <string name="bouton_3">Annulation</string>
 </resources>

@@ -8,7 +8,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
-
 /**
  * Instrumented test, which will execute on an Android device.
  *
@@ -24,3 +23,4 @@ public class ExampleInstrumentedTest {
         assertEquals("com.example.groupe1.ue236_groupe1_semaine2", appContext.getPackageName());
     }
 }
+

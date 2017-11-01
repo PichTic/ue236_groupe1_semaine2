@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.marion.myapplication.R;
+//import com.example.groupe1.ue236_groupe1_semaine2.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\Toorop\AndroidStudioProjects\ue236_groupe1_semaine2\MyApplication.iml" filepath="C:\Users\Toorop\AndroidStudioProjects\ue236_groupe1_semaine2\MyApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/ue236_groupe1_semaine2.iml" filepath="$PROJECT_DIR$/ue236_groupe1_semaine2.iml" />
     </modules>

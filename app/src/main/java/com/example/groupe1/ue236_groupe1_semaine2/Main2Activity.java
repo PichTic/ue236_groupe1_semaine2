@@ -1,10 +1,12 @@
-package com.example.marion.myapplication;
+package com.example.groupe1.ue236_groupe1_semaine2;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import com.example.marion.myapplication.R;
 
 public class Main2Activity extends AppCompatActivity {
 

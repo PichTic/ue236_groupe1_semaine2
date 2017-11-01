@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.marion.myapplication.MainActivity">
+    tools:context="com.example.marion.myapplication.com.example.groupe1.ue236_groupe1_semaine2.myapplication.MainActivity">
 
     <TextView
         android:layout_width="fill_parent"

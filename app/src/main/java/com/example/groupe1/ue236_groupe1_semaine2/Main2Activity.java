@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.marion.myapplication.R;
+//import com.example.groupe1.ue236_groupe1_semaine2.R;
 
 public class Main2Activity extends AppCompatActivity {
 

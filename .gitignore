@@ -41,11 +41,13 @@ captures/
 *.iml
 .idea/workspace.xml
 .idea/tasks.xml
+.idea/modules.xml
 .idea/gradle.xml
 .idea/dictionaries
 .idea/libraries
 /.idea/workspace.xml
 /.idea/libraries
+/.idea/modules.xml
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
@@ -218,3 +220,4 @@ tmp/
 # JDT-specific (Eclipse Java Development Tools)		
 
 # End of https://www.gitignore.io/api/eclipse,android,androidstudio
+.idea/modules.xml

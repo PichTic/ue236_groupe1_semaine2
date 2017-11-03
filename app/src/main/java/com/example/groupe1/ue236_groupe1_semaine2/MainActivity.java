@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.checkBox:
                 if (checked) {
-                    Marion = "Marion";
+                    final String contact1 = getString(R.string.contact_1);
+                    Marion = contact1;
                 } else {
                     Marion = "";
                 }
@@ -46,21 +47,24 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.checkBox2:
                 if (checked) {
-                    Vincent = "Vincent";
+                    final String contact2 = getString(R.string.contact_2);
+                    Vincent = contact2;
                 } else {
                     Vincent = "";
                 }
                 break;
             case R.id.checkBox3:
                 if (checked) {
-                    Melissa = "Melissa";
+                    final String contact3 = getString(R.string.contact_3);
+                    Melissa = contact3;
                 } else {
                     Melissa = "";
                 }
                 break;
             case R.id.checkBox4:
                 if (checked) {
-                    Emmanuel = "Emmanuel";
+                    final String contact4 = getString(R.string.contact_4);
+                    Emmanuel = contact4;
                 } else {
                     Emmanuel = "";
                 }

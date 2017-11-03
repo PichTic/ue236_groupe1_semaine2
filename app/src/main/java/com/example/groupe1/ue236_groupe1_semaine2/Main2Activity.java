@@ -25,7 +25,7 @@ public class Main2Activity extends AppCompatActivity {
         String Emmanuel = intentResult.getStringExtra("Me");
         String Marion = intentResult.getStringExtra("Em");
 
-        showResult.setText(Vincent+" , "+Melissa+" , "+Emmanuel+" , "+Marion);
+        showResult.setText(Vincent+"\n"+Melissa+"\n"+Emmanuel+"\n"+Marion);
     }
 
     public void creerToast (View view) {

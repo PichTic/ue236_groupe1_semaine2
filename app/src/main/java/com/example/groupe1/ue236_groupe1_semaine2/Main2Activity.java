@@ -33,15 +33,15 @@ public class Main2Activity extends AppCompatActivity {
         }
         if(Vincent != null)
         {
-            Liste += Vincent+" ";
+            Liste += Vincent+"\n";
         }
         if(Melissa != null)
         {
-            Liste += Melissa+" ";
+            Liste += Melissa+"\n";
         }
         if(Emmanuel != null)
         {
-            Liste += Emmanuel+" ";
+            Liste += Emmanuel+"\n";
         }
         if(Marion != null)
         {

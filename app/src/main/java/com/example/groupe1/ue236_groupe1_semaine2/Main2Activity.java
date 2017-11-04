@@ -25,7 +25,30 @@ public class Main2Activity extends AppCompatActivity {
         String Emmanuel = intentResult.getStringExtra("Me");
         String Marion = intentResult.getStringExtra("Em");
 
-        showResult.setText(Vincent+"\n"+Melissa+"\n"+Emmanuel+"\n"+Marion);
+        String Liste = "";
+
+        if((Vincent == null) && (Melissa == null) && (Emmanuel == null) && (Marion == null))
+        {
+            Liste = "Aucun contact sélectionné.";
+        }
+        if(Vincent != null)
+        {
+            Liste += Vincent+" ";
+        }
+        if(Melissa != null)
+        {
+            Liste += Melissa+" ";
+        }
+        if(Emmanuel != null)
+        {
+            Liste += Emmanuel+" ";
+        }
+        if(Marion != null)
+        {
+            Liste += Marion;
+        }
+
+        showResult.setText(Liste);
     }
 
     public void creerToast (View view) {

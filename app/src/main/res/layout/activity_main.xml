@@ -15,41 +15,45 @@
         android:layout_height="match_parent">
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/checkcontact1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
             android:text="@string/contact_1"
+            android:layout_marginTop="10dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintHorizontal_bias="0.42"/>
 
         <CheckBox
-            android:id="@+id/checkBox2"
+            android:id="@+id/checkcontact2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
             android:text="@string/contact_2"
-            app:layout_constraintStart_toStartOf="@+id/checkBox"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/checkcontact1"
+            app:layout_constraintTop_toBottomOf="@+id/checkcontact1" />
 
         <CheckBox
-            android:id="@+id/checkBox3"
+            android:id="@+id/checkcontact3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
             android:text="@string/contact_3"
-            app:layout_constraintStart_toStartOf="@+id/checkBox2"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/checkcontact2"
+            app:layout_constraintTop_toBottomOf="@+id/checkcontact2" />
 
         <CheckBox
-            android:id="@+id/checkBox4"
+            android:id="@+id/checkcontact4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
             android:text="@string/contact_4"
-            app:layout_constraintStart_toStartOf="@+id/checkBox3"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/checkcontact3"
+            app:layout_constraintTop_toBottomOf="@+id/checkcontact3" />
 
     </android.support.constraint.ConstraintLayout>
 

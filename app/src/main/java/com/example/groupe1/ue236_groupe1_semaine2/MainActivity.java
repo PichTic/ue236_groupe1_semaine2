@@ -10,7 +10,7 @@ import android.widget.CheckBox;
 
 public class MainActivity extends AppCompatActivity {
 
-   // Intent intent;
+    // Intent intent;
     String Vincent;
     String Melissa;
     String Marion;
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void nouvelleActivite (View view) {
+    public void nouvelleActivite(View view) {
         Intent startNewActivity = new Intent(this, Main2Activity.class);
         startNewActivity.putExtra("V", Vincent);
         startNewActivity.putExtra("M", Marion);
@@ -69,11 +69,6 @@ public class MainActivity extends AppCompatActivity {
                     Emmanuel = "";
                 }
                 break;
-
-            default:
-                break;
         }
     }
 }
-
-

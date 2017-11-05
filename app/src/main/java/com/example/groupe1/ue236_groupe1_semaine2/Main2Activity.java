@@ -27,37 +27,32 @@ public class Main2Activity extends AppCompatActivity {
 
         String Liste = "";
 
-        if((Vincent == null) && (Melissa == null) && (Emmanuel == null) && (Marion == null))
-        {
+        if ((Vincent == null) && (Melissa == null) && (Emmanuel == null) && (Marion == null)) {
             Liste = "Aucun contact sélectionné.";
         }
-        if(Vincent != null)
-        {
-            Liste += Vincent+"\n";
+        if (Vincent != null) {
+            Liste += Vincent + "\n";
         }
-        if(Melissa != null)
-        {
-            Liste += Melissa+"\n";
+        if (Melissa != null) {
+            Liste += Melissa + "\n";
         }
-        if(Emmanuel != null)
-        {
-            Liste += Emmanuel+"\n";
+        if (Emmanuel != null) {
+            Liste += Emmanuel + "\n";
         }
-        if(Marion != null)
-        {
+        if (Marion != null) {
             Liste += Marion;
         }
 
         showResult.setText(Liste);
     }
 
-    public void creerToast (View view) {
-            Toast.makeText(getApplicationContext(), "Le bouton de validation a été cliqué.", Toast.LENGTH_SHORT).show();
+    public void creerToast(View view) {
+        Toast.makeText(getApplicationContext(), "Le bouton de validation a été cliqué.", Toast.LENGTH_SHORT).show();
         Intent startOldActivity = new Intent(this, MainActivity.class);
         startActivity(startOldActivity);
     }
 
-    public void retourActivite (View view) {
+    public void retourActivite(View view) {
         Intent backToOldActivity = new Intent(this, MainActivity.class);
         startActivity(backToOldActivity);
     }

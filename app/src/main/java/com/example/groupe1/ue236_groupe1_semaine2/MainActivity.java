@@ -11,10 +11,9 @@ import android.widget.CheckBox;
 public class MainActivity extends AppCompatActivity {
 
     // Intent intent;
-    String Vincent;
-    String Melissa;
-    String Marion;
-    String Emmanuel;
+
+    int nb_contact = 4;
+    String[] contacts = new String[nb_contact];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void nouvelleActivite(View view) {
         Intent startNewActivity = new Intent(this, Main2Activity.class);
-        startNewActivity.putExtra("V", Vincent);
-        startNewActivity.putExtra("M", Marion);
-        startNewActivity.putExtra("Me", Melissa);
-        startNewActivity.putExtra("Em", Emmanuel);
+        startNewActivity.putExtra("nb_contact", nb_contact);
+        startNewActivity.putExtra("Contact", contacts);
         startActivity(startNewActivity);
     }
 
@@ -36,37 +33,37 @@ public class MainActivity extends AppCompatActivity {
 
         switch (view.getId()) {
 
-            case R.id.checkBox:
+            case R.id.checkcontact1:
                 if (checked) {
                     final String contact1 = getString(R.string.contact_1);
-                    Marion = contact1;
+                    contacts[0] = contact1;
                 } else {
-                    Marion = "";
+                    contacts[0] = "";
                 }
                 break;
 
-            case R.id.checkBox2:
+            case R.id.checkcontact2:
                 if (checked) {
                     final String contact2 = getString(R.string.contact_2);
-                    Vincent = contact2;
+                    contacts[1] = contact2;
                 } else {
-                    Vincent = "";
+                    contacts[1] = "";
                 }
                 break;
-            case R.id.checkBox3:
+            case R.id.checkcontact3:
                 if (checked) {
                     final String contact3 = getString(R.string.contact_3);
-                    Melissa = contact3;
+                    contacts[2] = contact3;
                 } else {
-                    Melissa = "";
+                    contacts[2] = "";
                 }
                 break;
-            case R.id.checkBox4:
+            case R.id.checkcontact4:
                 if (checked) {
                     final String contact4 = getString(R.string.contact_4);
-                    Emmanuel = contact4;
+                    contacts[3] = contact4;
                 } else {
-                    Emmanuel = "";
+                    contacts[3] = "";
                 }
                 break;
         }

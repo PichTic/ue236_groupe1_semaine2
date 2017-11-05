@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,23 @@ public class Main2Activity extends AppCompatActivity {
         }
 
         showResult.setText(Liste);
+
+        Button bouton_2 = (Button) findViewById(R.id.bouton_2);
+        Button bouton_3 = (Button) findViewById(R.id.bouton_3);
+
+        bouton_2.setOnClickListener (new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                creerToast(v);
+            }
+        });
+
+        bouton_3.setOnClickListener (new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                retourActivite(v);
+            }
+        });
     }
 
     public void creerToast(View view) {

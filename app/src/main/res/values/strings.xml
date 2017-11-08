@@ -5,6 +5,7 @@
     <string name="contact_3">Mélissa Latouille</string>
     <string name="contact_4">Emmanuel Michaud</string>
     <string name="bouton_1">Valider</string>
+    <string name="selectall">Tout sélectionner</string>
     <string name="bouton_2">Validation</string>
     <string name="bouton_3">Annulation</string>
 </resources>

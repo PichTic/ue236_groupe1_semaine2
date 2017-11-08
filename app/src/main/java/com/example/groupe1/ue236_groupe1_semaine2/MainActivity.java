@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ListView;
 
 //import com.example.groupe1.ue236_groupe1_semaine2.R;
 
@@ -27,6 +29,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick (View v) {
                 nouvelleActivite(v);
+            }
+        });
+    }
+
+    // Bouton pour sélectionner tout les contacts
+    public void onCreate (Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        final Button selectall = (Button) findViewById(R.id.selectall);
+        selectall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // toutes les checkbox checked
+                // ou recup toute la ListView
             }
         });
     }

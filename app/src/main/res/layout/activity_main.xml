@@ -56,6 +56,19 @@
             app:layout_constraintTop_toBottomOf="@+id/checkcontact3" />
 
     </android.support.constraint.ConstraintLayout>
+<!--
+    <ListView
+        android:id="@+id/contacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+-->
+<!-- Bouton pour sélectionner tous les contacts -->
+    <Button
+        android:id="@+id/selectall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/bouton_1"
+        android:text="@string/selectall"/>
 
     <Button
         android:id="@+id/bouton_1"

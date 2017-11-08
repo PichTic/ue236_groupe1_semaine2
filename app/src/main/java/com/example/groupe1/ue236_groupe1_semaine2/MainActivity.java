@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void nouvelleActivite(View view) {
-        Intent startNewActivity = new Intent(this, Main2Activity.class);
+        Intent startNewActivity = new Intent(this, SecondActivity.class);
         startNewActivity.putExtra("nb_contact", nb_contact);
         startNewActivity.putExtra("Contact", contacts);
         startActivity(startNewActivity);

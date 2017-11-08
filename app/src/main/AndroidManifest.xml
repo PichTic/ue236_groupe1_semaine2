@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.groupe1.ue236_groupe1_semaine2.Main2Activity"></activity>
+        <activity android:name="com.example.groupe1.ue236_groupe1_semaine2.SecondActivity"></activity>
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@
     android:id="@+id/linearLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.groupe1.ue236_groupe1_semaine2.Main2Activity">
+    tools:context="com.example.groupe1.ue236_groupe1_semaine2.SecondActivity">
 
 
 

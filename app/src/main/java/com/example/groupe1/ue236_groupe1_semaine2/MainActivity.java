@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //import com.example.groupe1.ue236_groupe1_semaine2.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,17 +50,21 @@ public class MainActivity extends AppCompatActivity {
         contact contact_4 = new contact ("Michaud", "Emmanuel", "0555000000");
         contact contact_5 = new contact ("Test", "Lolo", "0696969690");
 
-        String[] ListContacts = new String[contact.nbcontact];
-        ListContacts[0] = contact_1.prenom;
-        ListContacts[1] = contact_2.prenom;
-        ListContacts[2] = contact_3.prenom;
-        ListContacts[3] = contact_4.prenom;
-        ListContacts[4] = contact_5.prenom;
+        List<contact> ListContacts = new ArrayList<>();
+        ListContacts.add(contact_1);
+        ListContacts.add(contact_2);
+        ListContacts.add(contact_3);
+        ListContacts.add(contact_4);
+        ListContacts.add(contact_5);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+
+        ArrayAdapter<contact> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_checked, ListContacts); //Préparation de l'adapter avec le layout compris dans l'API, préparation des données du tableau dans ce layout
         ListView listView = (ListView) findViewById(R.id.contacts);
         listView.setAdapter(adapter); //Remplissage de la listView par l'adapter
+
+
+
     }
 
     public void nouvelleActivite(View view) {

@@ -14,54 +14,61 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <CheckBox
-            android:id="@+id/checkcontact1"
+        <!--CheckBox
+            android:id="@+id/Contact1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
-            android:text="@string/contact_1"
+            android:text="@string/ContactName1"
+            android:textSize="18sp"
             android:layout_marginTop="10dp"
+            app:layout_constraintHorizontal_bias="0.415"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_bias="0.42"/>
+            android:onClick="onCheckboxClicked" />
 
         <CheckBox
-            android:id="@+id/checkcontact2"
+            android:id="@+id/Contact2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
-            android:text="@string/contact_2"
+            android:text="@string/ContactName2"
+            android:textSize="18sp"
             android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="@+id/checkcontact1"
-            app:layout_constraintTop_toBottomOf="@+id/checkcontact1" />
+            app:layout_constraintLeft_toLeftOf="@id/Contact1"
+            app:layout_constraintTop_toBottomOf="@id/Contact1"
+            android:onClick="onCheckboxClicked"/>
 
         <CheckBox
-            android:id="@+id/checkcontact3"
+            android:id="@+id/Contact3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
-            android:text="@string/contact_3"
+            android:text="@string/ContactName3"
+            android:textSize="18sp"
             android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="@+id/checkcontact2"
-            app:layout_constraintTop_toBottomOf="@+id/checkcontact2" />
+            app:layout_constraintLeft_toLeftOf="@id/Contact2"
+            app:layout_constraintTop_toBottomOf="@id/Contact2"
+            android:onClick="onCheckboxClicked" />
 
         <CheckBox
-            android:id="@+id/checkcontact4"
+            android:id="@+id/Contact4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
-            android:text="@string/contact_4"
+            android:text="@string/ContactName4"
+            android:textSize="18sp"
             android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="@+id/checkcontact3"
-            app:layout_constraintTop_toBottomOf="@+id/checkcontact3" />
+            app:layout_constraintLeft_toLeftOf="@id/Contact3"
+            app:layout_constraintTop_toBottomOf="@id/Contact3"
+            android:onClick="onCheckboxClicked" /-->
+
+        <ListView
+            android:id="@+id/contacts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintHorizontal_bias="0.415"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
-<!--
-    <ListView
-        android:id="@+id/contacts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
--->
 <!-- Bouton pour sélectionner tous les contacts -->
     <Button
         android:id="@+id/selectall"

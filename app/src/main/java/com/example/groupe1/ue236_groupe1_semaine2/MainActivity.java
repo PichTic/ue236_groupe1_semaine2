@@ -31,12 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 nouvelleActivite(v);
             }
         });
-    }
 
-    // Bouton pour sélectionner tout les contacts
-    public void onCreate (Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         final Button selectall = (Button) findViewById(R.id.selectall);
         selectall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,16 +40,34 @@ public class MainActivity extends AppCompatActivity {
                 // ou recup toute la ListView
             }
         });
+
+        contact contact_1 = new contact ("Lombardi", "Marion", "0606060606");
+        contact contact_2 = new contact ("Pichot", "Vincent", "0600000000");
+        contact contact_3 = new contact ("Latouille", "Mélissa", "0555550000");
+        contact contact_4 = new contact ("Michaud", "Emmanuel", "0555000000");
+        contact contact_5 = new contact ("Test", "Lolo", "0696969690");
+
+        String[] ListContacts = new String[contact.nbcontact];
+        ListContacts[0] = contact_1.prenom;
+        ListContacts[1] = contact_2.prenom;
+        ListContacts[2] = contact_3.prenom;
+        ListContacts[3] = contact_4.prenom;
+        ListContacts[4] = contact_5.prenom;
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_checked, ListContacts); //Préparation de l'adapter avec le layout compris dans l'API, préparation des données du tableau dans ce layout
+        ListView listView = (ListView) findViewById(R.id.contacts);
+        listView.setAdapter(adapter); //Remplissage de la listView par l'adapter
     }
 
     public void nouvelleActivite(View view) {
         Intent startNewActivity = new Intent(this, SecondActivity.class);
         startNewActivity.putExtra("nb_contact", nb_contact);
-        startNewActivity.putExtra("Contact", contacts);
+        //startNewActivity.putExtra("Contact", contacts);
         startActivity(startNewActivity);
     }
 
-    public void onCheckboxClicked(View view) {
+    /*public void onCheckboxClicked(View view) {
         boolean checked = ((CheckBox) view).isChecked();
 
         switch (view.getId()) {
@@ -93,5 +106,5 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
         }
-    }
+    }*/
 }

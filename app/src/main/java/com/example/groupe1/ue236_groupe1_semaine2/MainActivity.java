@@ -10,6 +10,7 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 //import com.example.groupe1.ue236_groupe1_semaine2.R;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     // Intent intent;
 
     int nb_contact = 4;
-    String[] contacts = new String[nb_contact];
+    //String[] contacts = new String[nb_contact];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         contact contact_4 = new contact ("Michaud", "Emmanuel", "0555000000");
         contact contact_5 = new contact ("Test", "Lolo", "0696969690");
 
-        List<contact> ListContacts = new ArrayList<>();
+        List<contact> ListContacts = Collections.synchronizedList(new ArrayList());
         ListContacts.add(contact_1);
         ListContacts.add(contact_2);
         ListContacts.add(contact_3);

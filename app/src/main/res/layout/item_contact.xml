@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.groupe1.ue236_groupe1_semaine2.CheckableLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    >
+
+    <TextView
+        android:id="@+id/tvNom"
+        android:duplicateParentState="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="13dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="6dp"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/tvPrenom"
+        android:duplicateParentState="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tvNom"
+        android:layout_toRightOf="@+id/tvNom"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+    <ImageView android:src="@drawable/ic_checkable_item"
+        android:duplicateParentState="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp" />
+
+</com.example.groupe1.ue236_groupe1_semaine2.CheckableLinearLayout>

@@ -36,7 +36,7 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
-        int nb_contact = intentResult.getIntExtra("nb_contact", 0);  //On récupère le nombre de contact
+       /* int nb_contact = intentResult.getIntExtra("nb_contact", 0);  //On récupère le nombre de contact
         String[] contacts = intentResult.getStringArrayExtra("Contact"); //On récupère la transmission des contacts dans un tableau
 
         int vide = 0; //On initialise un compteur qui va servir à définir la longueur du tableau définitif en plus d'afficher la phrase si aucun contact n'est sélectionné
@@ -73,7 +73,7 @@ public class SecondActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, ListArray); //Préparation de l'adapter avec le layout compris dans l'API, préparation des données du tableau dans ce layout
         ListView listView = (ListView) findViewById(R.id.ContactList); //Sélection de la listView
-        listView.setAdapter(adapter); //Remplissage de la listView par l'adapter
+        listView.setAdapter(adapter); //Remplissage de la listView par l'adapter*/
     }
 
     public void creerToast(View view) {

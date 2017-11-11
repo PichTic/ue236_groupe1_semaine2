@@ -30,11 +30,11 @@ public class CustomContactsAdapter extends ArrayAdapter<Contact> {
         Contact contact = getItem(position);
 
         // Lookup view for data population
-        TextView tvNom = (TextView) convertView.findViewById(R.id.tvNom);
-        TextView tvPrenom = (TextView) convertView.findViewById(R.id.tvPrenom);
+        TextView Nom = (TextView) convertView.findViewById(R.id.Nom);
+        TextView Prenom = (TextView) convertView.findViewById(R.id.Prenom);
         // Populate the data into the template view using the data object
-        tvNom.setText(contact.getNom());
-        tvPrenom.setText(contact.getPrenom());
+        Nom.setText(contact.getNom());
+        Prenom.setText(contact.getPrenom());
         // Retourne la vue
         return convertView;
     }

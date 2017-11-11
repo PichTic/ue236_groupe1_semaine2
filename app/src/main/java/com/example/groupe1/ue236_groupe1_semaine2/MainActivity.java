@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -16,10 +18,9 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
 
-    // Intent intent;
-
-    int nb_contact = 4;
-    //String[] contacts = new String[nb_contact];
+    // Intent intent
+    // Construct the data source
+    ArrayList<Contact> arrayOfContacts = Contact.getContacts();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
         /*populateContactsList();*/
 
-        // Construct the data source
-        ArrayList<Contact> arrayOfContacts = Contact.getContacts();
         // Create the adapter to convert the array to views
         final CustomContactsAdapter adapter = new CustomContactsAdapter(this, arrayOfContacts);
         // Attach the adapter to a ListView
@@ -66,22 +65,16 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-/*    private void populateContactsList() {
-        // Construct the data source
-        ArrayList<Contact> arrayOfContacts = Contact.getContacts();
-        // Create the adapter to convert the array to views
-        CustomContactsAdapter adapter = new CustomContactsAdapter(this, arrayOfContacts);
-        // Attach the adapter to a ListView
-        ListView listView = (ListView) findViewById(R.id.lvContacts);
-        listView.setAdapter(adapter);
-    }*/
-
-
-
     public void nouvelleActivite(View view) {
         Intent startNewActivity = new Intent(this, SecondActivity.class);
-        startNewActivity.putExtra("nb_contact", nb_contact);
-        //startNewActivity.putExtra("Contact", contacts);
+        for(int i = 0; i < arrayOfContacts.size(); i++)
+        {
+            if(arrayOfContacts.get(i).getIsChecked() == false)
+            {
+                arrayOfContacts.remove(i);
+            }
+        }
+        startNewActivity.putExtra("Contacts", arrayOfContacts);
         startActivity(startNewActivity);
     }
 }

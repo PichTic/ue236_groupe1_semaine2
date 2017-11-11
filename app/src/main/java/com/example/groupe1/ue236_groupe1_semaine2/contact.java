@@ -1,42 +1,48 @@
 package com.example.groupe1.ue236_groupe1_semaine2;
 
-/**
- * Created by Manu on 09/11/2017.
- */
 
-public class contact {
-    //Variables d'instance
-    public String nom;
-    public String prenom;
-    public String numero;
-    public boolean selected;
-    public int id;
+import java.util.ArrayList;
 
-    //Variable de classe
-    public static int nbcontact = 0;
+public class Contact {
+    private String nom;
+    private String prenom;
+    private String tel;
+    private boolean is_checked;
 
-    //Constructeur
 
-    public contact(String nom, String prenom, String numero) {
+    public Contact(String nom, String prenom, String tel, boolean is_checked) {
         this.nom = nom;
         this.prenom = prenom;
-        this.numero = numero;
-        this.selected = false;
-        this.id = nbcontact;
-        incrementnbcontact();
+        this.tel = tel;
+        this.is_checked = is_checked;
     }
 
-    //Méthodes
-
-    public boolean isSelected() {
-        return selected;
+    public static ArrayList<Contact> getContacts () {
+        ArrayList<Contact> contacts = new ArrayList<Contact>();
+        contacts.add(new Contact("Pichot", "Vincent", "0688320407", false));
+        contacts.add(new Contact("Michaud", "Emmanuel", "0633216547", false));
+        contacts.add(new Contact("Latouille", "Melissa", "0656458957", false));
+        contacts.add(new Contact("Lombardi", "Marion", "0678956421", false));
+        return contacts;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public String getNom() {
+        return nom;
     }
 
-    public static void incrementnbcontact() {
-        nbcontact++;
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setIsChecked(boolean is_checked) {
+        this.is_checked = is_checked;
+    }
+
+    public boolean getIsChecked() {
+        return is_checked;
     }
 }

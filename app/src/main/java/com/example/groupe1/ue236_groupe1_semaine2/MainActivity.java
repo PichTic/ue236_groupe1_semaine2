@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -45,13 +46,21 @@ public class MainActivity extends AppCompatActivity {
         final ListView listView = (ListView) findViewById(R.id.lvContacts);
         listView.setAdapter(adapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            public void onItemClick(AdapterView<?> parent, View view,int position, long id)
+            {
+                //here i want to get the items
+                adapter.getItem(position).changeIsChecked();   // this is your object
+            }
+        });
+
 
         Button bouton_1 = (Button) findViewById(R.id.bouton_1);
 
         bouton_1.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nouvelleActivite(v);
+            public void onClick(View v){
+                test_checked(v);
             }
         });
 
@@ -64,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i = 0; i < adapter.getCount(); i++) {
                     listView.setItemChecked(i, true);
+                }
+                for(int i = 0; i < arrayOfContacts.size(); i++){ //On modifie la variable des contacts
+                    arrayOfContacts.get(i).setIsChecked(true);
                 }
 
                 SparseBooleanArray checked = listView.getCheckedItemPositions();
@@ -108,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     //@todo récupérer le numéro de téléphone du contact
-                    contact.setIsChecked(false);
 
                     arrayOfContacts.add(contact);
 
@@ -133,15 +144,38 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void test_checked(View view) {
+        int checkedcontrol = 0;
+        for(int i = 0; i < arrayOfContacts.size(); i++)
+
+        {
+            if (arrayOfContacts.get(i).getIsChecked()) {
+                checkedcontrol++;
+            }
+        }
+        if(checkedcontrol != 0){
+                nouvelleActivite(view);
+        }
+        else {
+            ToastNoChecked(view);
+        }
+
+    }
+
+    public void ToastNoChecked(View view) {
+        Toast.makeText(getApplicationContext(), "Aucun contact n'est sélectionné.", Toast.LENGTH_SHORT).show();
+    }
+
 
     public void nouvelleActivite(View view) {
         Intent startNewActivity = new Intent(this, SecondActivity.class);
+        ArrayList<Contact> checkedcontact = new ArrayList<Contact>();
         for (int i = 0; i < arrayOfContacts.size(); i++) {
-            if (!arrayOfContacts.get(i).getIsChecked()) {
-                arrayOfContacts.remove(i);
+            if (arrayOfContacts.get(i).getIsChecked()) {
+                checkedcontact.add(arrayOfContacts.get(i));
             }
         }
-        startNewActivity.putExtra("Contacts", arrayOfContacts);
+        startNewActivity.putParcelableArrayListExtra("Contacts", checkedcontact);
         startActivity(startNewActivity);
     }
 

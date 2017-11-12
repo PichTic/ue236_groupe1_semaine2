@@ -18,9 +18,8 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.secondactivity_main);
 
-
-        ArrayList<Contact> contacts = getIntent().getExtras().getParcelable("Contacts");
-        TextView retourcontact = (TextView) findViewById(R.id.ContactList);
+        ArrayList<Contact> contacts = getIntent().getExtras().getParcelableArrayList("Contacts");
+        TextView retourcontact = (TextView) findViewById(R.id.RecapContact);
         String ListNoms;
         if(contacts == null)
         {
@@ -29,7 +28,7 @@ public class SecondActivity extends AppCompatActivity {
         else {
             ListNoms = "Sélectionnés : ";
             for (int i = 0; i < contacts.size(); i++) {
-                ListNoms += contacts.get(i).getNom();
+                ListNoms += contacts.get(i).getNom() + "; ";
             }
         }
         retourcontact.setText(ListNoms);

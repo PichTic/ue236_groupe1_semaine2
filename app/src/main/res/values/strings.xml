@@ -8,4 +8,14 @@
     <string name="selectall">Tout sélectionner</string>
     <string name="bouton_2">Validation</string>
     <string name="bouton_3">Annulation</string>
+    <string name="voeux_anniversaire1">Joyeux anniversaire %1$s!</string> //Le %1$s définie une variable à remplir
+    <string name="voeux_anniversaire2">Petite pensée pour toi %1$s en ce jour d\'anniversaire.</string>
+    <string name="voeux_anniversaire3">Je te souhaite un bon anniversaire %1$s!</string>
+    <string name="voeux_fete">Joyeuse fête %1$s!</string>
+    <string name="voeux_noel1">Joyeux Noël %1$s!</string>
+    <string name="voeux_noel2">Petite pensée pour toi %1$s en cette veillée de Noël!</string>
+    <string name="voeux_mariage">J\'ai appris la nouvelle, aujourd\'hui est un  grand jour pour toi %1$s, toutes mes félicitations!</string>
+    <string name="voeux_nouvel_an1">J\'espère que tes résolutions sont prêtes %1$s, en tout cas je te souhaite le meilleur pour cette nouvelle année!</string>
+    <string name="voeux_nouvel_an2">Joyeuse nouvelle année %1$s!</string>
+    <string name="voeux_nouvel_an3">Petite pensée pour toi %1$s pour cette nouvelle année.</string>
 </resources>

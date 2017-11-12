@@ -1,10 +1,13 @@
 package com.example.groupe1.ue236_groupe1_semaine2;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +35,27 @@ public class SecondActivity extends AppCompatActivity {
             }
         }
         retourcontact.setText(ListNoms);
+
+
+        ListView listViewWish = (ListView) findViewById(R.id.wishlist);
+
+        Resources res = getResources();
+        String[] text = new String[10];
+
+        text[0] = res.getString(R.string.voeux_anniversaire1, "...");
+        text[1] = res.getString(R.string.voeux_anniversaire2, "...");
+        text[2] = res.getString(R.string.voeux_anniversaire3, "...");
+        text[3] = res.getString(R.string.voeux_fete, "...");
+        text[4] = res.getString(R.string.voeux_noel1, "...");
+        text[5] = res.getString(R.string.voeux_noel2, "...");
+        text[6] = res.getString(R.string.voeux_mariage, "...");
+        text[7] = res.getString(R.string.voeux_nouvel_an1, "...");
+        text[8] = res.getString(R.string.voeux_nouvel_an2, "...");
+        text[9] = res.getString(R.string.voeux_nouvel_an3, "...");
+
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, text);
+        listViewWish.setAdapter(adapter);
 
         Button bouton_2 = (Button) findViewById(R.id.bouton_2);
         Button bouton_3 = (Button) findViewById(R.id.bouton_3);

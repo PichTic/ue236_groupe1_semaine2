@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 
 public class CheckableLinearLayout extends LinearLayout implements Checkable {
     private static final int[] CHECKED_STATE_SET = {android.R.attr.state_checked};
-    private static final String TAG = "CheckableLayout";
 
     private boolean mChecked = false;
 
@@ -21,7 +20,7 @@ public class CheckableLinearLayout extends LinearLayout implements Checkable {
     }
 
     public boolean isChecked() {
-        Log.v(TAG, "isChecked = " + mChecked);
+
         return mChecked;
     }
 

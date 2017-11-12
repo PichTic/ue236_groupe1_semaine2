@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         Intent startNewActivity = new Intent(this, SecondActivity.class);
         for(int i = 0; i < arrayOfContacts.size(); i++)
         {
-            if(arrayOfContacts.get(i).getIsChecked() == false)
+            if(!arrayOfContacts.get(i).getIsChecked())
             {
                 arrayOfContacts.remove(i);
             }

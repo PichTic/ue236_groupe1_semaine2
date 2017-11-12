@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +19,20 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.secondactivity_main);
 
 
-        ArrayList<Contact> arrayofcontacts = getIntent().getExtras().getParcelable("Contacts");
+        ArrayList<Contact> contacts = getIntent().getExtras().getParcelable("Contacts");
+        TextView retourcontact = (TextView) findViewById(R.id.ContactList);
+        String ListNoms;
+        if(contacts == null)
+        {
+            ListNoms = "Rien de sélectionné.";
+        }
+        else {
+            ListNoms = "Sélectionnés : ";
+            for (int i = 0; i < contacts.size(); i++) {
+                ListNoms += contacts.get(i).getNom();
+            }
+        }
+        retourcontact.setText(ListNoms);
 
         Button bouton_2 = (Button) findViewById(R.id.bouton_2);
         Button bouton_3 = (Button) findViewById(R.id.bouton_3);
@@ -39,25 +50,6 @@ public class SecondActivity extends AppCompatActivity {
                 retourActivite(v);
             }
         });
-
-
-        String Recap;
-
-        if(arrayofcontacts.isEmpty())
-        {
-            Recap = "Vous n'avez rien sélectionné.";
-        }
-        else {
-
-            Recap = "Vous avez sélectionné : ";
-
-            for (int i = 0; i < arrayofcontacts.size(); i++) {
-                Recap += arrayofcontacts.get(i).getPrenom() + " " + arrayofcontacts.get(i).getNom() + " ";
-            }
-        }
-
-        TextView textview = (TextView) findViewById(R.id.ContactList);
-        textview.setText(Recap);
 
     }
 

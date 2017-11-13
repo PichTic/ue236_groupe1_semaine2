@@ -91,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
      */
     private void showContacts()
     {
-
         // Control de la version du SDK et si j'ai la permission d'acceder aux Contacts
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
@@ -99,9 +98,7 @@ public class MainActivity extends AppCompatActivity {
             ContentResolver cr = getContentResolver();
             Cursor cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
 
-
             if (cursor.moveToFirst()) {
-
                 do {
                     Contact contact = new Contact();
                     String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
@@ -120,21 +117,15 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     //@todo récupérer le numéro de téléphone du contact
-
                     arrayOfContacts.add(contact);
-
                 } while (cursor.moveToNext());
             }
             cursor.close();
-
         }
     }
 
-
-
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                           int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 showContacts();
@@ -147,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
     public void test_checked(View view) {
         int checkedcontrol = 0;
         for(int i = 0; i < arrayOfContacts.size(); i++)
-
         {
             if (arrayOfContacts.get(i).getIsChecked()) {
                 checkedcontrol++;
@@ -159,13 +149,11 @@ public class MainActivity extends AppCompatActivity {
         else {
             ToastNoChecked(view);
         }
-
     }
 
     public void ToastNoChecked(View view) {
         Toast.makeText(getApplicationContext(), "Aucun contact n'est sélectionné.", Toast.LENGTH_SHORT).show();
     }
-
 
     public void nouvelleActivite(View view) {
         Intent startNewActivity = new Intent(this, SecondActivity.class);
@@ -178,5 +166,4 @@ public class MainActivity extends AppCompatActivity {
         startNewActivity.putParcelableArrayListExtra("Contacts", checkedcontact);
         startActivity(startNewActivity);
     }
-
 }

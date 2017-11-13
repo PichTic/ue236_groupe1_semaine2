@@ -4,10 +4,12 @@
     <string name="contact_2">Vincent Pichot</string>
     <string name="contact_3">Mélissa Latouille</string>
     <string name="contact_4">Emmanuel Michaud</string>
+    <!-- Les boutons -->
     <string name="bouton_1">Valider</string>
     <string name="selectall">Tout sélectionner</string>
-    <string name="bouton_2">Validation</string>
-    <string name="bouton_3">Annulation</string>
+    <string name="bouton_validation">Validation</string>
+    <string name="bouton_annulation">Annulation</string>
+    <!-- Phrases de Voeux -->
     <string name="voeux_anniversaire1">Joyeux anniversaire %1$s!</string> //Le %1$s définie une variable à remplir
     <string name="voeux_anniversaire2">Petite pensée pour toi %1$s en ce jour d\'anniversaire.</string>
     <string name="voeux_anniversaire3">Je te souhaite un bon anniversaire %1$s!</string>

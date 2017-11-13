@@ -1,5 +1,9 @@
 package com.example.groupe1.ue236_groupe1_semaine2;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +25,7 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.secondactivity_main);
 
+      // Afficher contacts sélectionnés :
         ArrayList<Contact> contacts = getIntent().getExtras().getParcelableArrayList("Contacts");
         TextView retourcontact = (TextView) findViewById(R.id.RecapContact);
         String ListNoms;
@@ -36,7 +41,7 @@ public class SecondActivity extends AppCompatActivity {
         }
         retourcontact.setText(ListNoms);
 
-
+      // Textes prédéfinis :
         ListView listViewWish = (ListView) findViewById(R.id.wishlist);
 
         Resources res = getResources();
@@ -57,31 +62,76 @@ public class SecondActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1, text);
         listViewWish.setAdapter(adapter);
 
-        Button bouton_2 = (Button) findViewById(R.id.bouton_2);
-        Button bouton_3 = (Button) findViewById(R.id.bouton_3);
+    // Les boutons
+        Button validation = (Button) findViewById(R.id.bouton_validation);
+        Button annulation = (Button) findViewById(R.id.bouton_annulation);
 
-        bouton_2.setOnClickListener(new View.OnClickListener() {
+      // Le bouton envoi de message :
+        validation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                creerToast(v);
+                confirmationEnvoi(v);
             }
         });
 
-        bouton_3.setOnClickListener(new View.OnClickListener() {
+      // Le Bouton annulation :
+        annulation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 retourActivite(v);
             }
         });
-
     }
 
+    /*
     public void creerToast(View view) {
         Toast.makeText(getApplicationContext(), "Le bouton de validation a été cliqué.", Toast.LENGTH_SHORT).show();
         Intent startOldActivity = new Intent(this, MainActivity.class);
         startActivity(startOldActivity);
     }
+    */
 
+    // Méthodes bouton validation :
+    public void confirmationEnvoi (View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SecondActivity.this);
+        // Titre de l'alertdialog
+        builder.setTitle("Confirmation envoi");
+        // Message de l'alertdialog
+        builder.setMessage("Souhaitez-vous envoyer ce(s) message(s) ?");
+        // Pour le bouton "non"
+        builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(),
+                        "Message(s) non-envoyé(s)",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+        // Pour le bouton "oui"
+        builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(),
+                        "Message(s) envoyé(s)",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+        builder.show();
+
+/*envoi sms
+if builder.setPositiveButton = true
+message = listViewWish
+nom = ListNoms
+SmsManager.getDefault().sendTextMessage(nom, null, message, null);
+
+sources :
+https://developer.android.com/reference/android/telephony/SmsManager.html
+http://a-renouard.developpez.com/tutoriels/android/sms/
+*/
+
+    }
+
+    // Méthode bouton annulation :
     public void retourActivite(View view) {
         Intent backToOldActivity = new Intent(this, MainActivity.class);
         startActivity(backToOldActivity);

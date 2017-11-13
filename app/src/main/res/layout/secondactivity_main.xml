@@ -26,21 +26,21 @@
         app:layout_constraintTop_toBottomOf="@id/RecapContact" />
 
     <Button
-        android:id="@+id/bouton_2"
+        android:id="@+id/bouton_validation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/bouton_2"
+        android:text="@string/bouton_validation"
         android:layout_margin="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <Button
-        android:id="@+id/bouton_3"
+        android:id="@+id/bouton_annulation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/bouton_3"
+        android:text="@string/bouton_annulation"
         android:layout_margin="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"  />

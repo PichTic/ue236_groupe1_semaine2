@@ -1,13 +1,17 @@
 package com.example.groupe1.ue236_groupe1_semaine2;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 public class SecondActivity extends AppCompatActivity {
@@ -17,7 +21,41 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.secondactivity_main);
 
-        Intent intentResult = this.getIntent();
+        ArrayList<Contact> contacts = getIntent().getExtras().getParcelableArrayList("Contacts");
+        TextView retourcontact = (TextView) findViewById(R.id.RecapContact);
+        String ListNoms;
+        if(contacts == null)
+        {
+            ListNoms = "Rien de sélectionné.";
+        }
+        else {
+            ListNoms = "Sélectionnés : ";
+            for (int i = 0; i < contacts.size(); i++) {
+                ListNoms += contacts.get(i).getNom() + "; ";
+            }
+        }
+        retourcontact.setText(ListNoms);
+
+
+        ListView listViewWish = (ListView) findViewById(R.id.wishlist);
+
+        Resources res = getResources();
+        String[] text = new String[10];
+
+        text[0] = res.getString(R.string.voeux_anniversaire1, "...");
+        text[1] = res.getString(R.string.voeux_anniversaire2, "...");
+        text[2] = res.getString(R.string.voeux_anniversaire3, "...");
+        text[3] = res.getString(R.string.voeux_fete, "...");
+        text[4] = res.getString(R.string.voeux_noel1, "...");
+        text[5] = res.getString(R.string.voeux_noel2, "...");
+        text[6] = res.getString(R.string.voeux_mariage, "...");
+        text[7] = res.getString(R.string.voeux_nouvel_an1, "...");
+        text[8] = res.getString(R.string.voeux_nouvel_an2, "...");
+        text[9] = res.getString(R.string.voeux_nouvel_an3, "...");
+
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, text);
+        listViewWish.setAdapter(adapter);
 
         Button bouton_2 = (Button) findViewById(R.id.bouton_2);
         Button bouton_3 = (Button) findViewById(R.id.bouton_3);
@@ -36,44 +74,6 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
-        int nb_contact = intentResult.getIntExtra("nb_contact", 0);  //On récupère le nombre de contact
-        String[] contacts = intentResult.getStringArrayExtra("Contact"); //On récupère la transmission des contacts dans un tableau
-
-        int vide = 0; //On initialise un compteur qui va servir à définir la longueur du tableau définitif en plus d'afficher la phrase si aucun contact n'est sélectionné
-
-        for (int i = 0; i < nb_contact; i++) {
-            if (contacts[i] == null) {
-                vide++; //Incrémentation de ce compteur en cas de paramètre vide
-            }
-        }
-
-        int long_contactList; //Variable pour la longueur du tableau de retour de contact sélectionnés
-
-        if ((nb_contact - vide) == 0) {
-            long_contactList = 1; //Initialisation de la taille à 1 afin de pouvoir afficher la phrase
-        } else {
-            long_contactList = nb_contact - vide;
-        }
-
-        String[] ListArray = new String[long_contactList]; //Initialisation du tableau de retour de contact avec une taille "dynamique"
-
-        if (vide == nb_contact) {
-            ListArray[0] = "Aucun contact sélectionné.";
-        }
-
-        int j = 0;
-        for (int i = 0; i < nb_contact; i++) {
-            if (contacts[i] != null) {
-                ListArray[j] = contacts[i]; //Remplissage du tableau avec seulement des paramètres valide
-                j++;
-            }
-        }
-
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, ListArray); //Préparation de l'adapter avec le layout compris dans l'API, préparation des données du tableau dans ce layout
-        ListView listView = (ListView) findViewById(R.id.ContactList); //Sélection de la listView
-        listView.setAdapter(adapter); //Remplissage de la listView par l'adapter
     }
 
     public void creerToast(View view) {

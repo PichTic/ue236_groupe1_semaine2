@@ -14,59 +14,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--CheckBox
-            android:id="@+id/Contact1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ContactName1"
-            android:textSize="18sp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintHorizontal_bias="0.415"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:onClick="onCheckboxClicked" />
-
-        <CheckBox
-            android:id="@+id/Contact2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ContactName2"
-            android:textSize="18sp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintLeft_toLeftOf="@id/Contact1"
-            app:layout_constraintTop_toBottomOf="@id/Contact1"
-            android:onClick="onCheckboxClicked"/>
-
-        <CheckBox
-            android:id="@+id/Contact3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ContactName3"
-            android:textSize="18sp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintLeft_toLeftOf="@id/Contact2"
-            app:layout_constraintTop_toBottomOf="@id/Contact2"
-            android:onClick="onCheckboxClicked" />
-
-        <CheckBox
-            android:id="@+id/Contact4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ContactName4"
-            android:textSize="18sp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintLeft_toLeftOf="@id/Contact3"
-            app:layout_constraintTop_toBottomOf="@id/Contact3"
-            android:onClick="onCheckboxClicked" /-->
 
         <ListView
-            android:id="@+id/contacts"
+            android:id="@+id/lvContacts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             app:layout_constraintHorizontal_bias="0.415"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            android:choiceMode="multipleChoice" />
 
     </android.support.constraint.ConstraintLayout>
 <!-- Bouton pour sélectionner tous les contacts -->

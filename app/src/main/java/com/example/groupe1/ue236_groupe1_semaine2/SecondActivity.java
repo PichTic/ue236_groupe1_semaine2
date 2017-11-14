@@ -5,6 +5,8 @@ import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -21,6 +23,7 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.secondactivity_main);
 
+        //Récupération des contacts et affichage des noms
         ArrayList<Contact> contacts = getIntent().getExtras().getParcelableArrayList("Contacts");
         TextView retourcontact = (TextView) findViewById(R.id.RecapContact);
         String ListNoms;
@@ -37,25 +40,35 @@ public class SecondActivity extends AppCompatActivity {
         retourcontact.setText(ListNoms);
 
 
-        ListView listViewWish = (ListView) findViewById(R.id.wishlist);
+        //Préparation de la listview pour les phrases de voeux
+        final ListView listViewWish = (ListView) findViewById(R.id.wishlist);
 
+        //Initialisation de l'objet Voeux, la fonction getResources() ne fonctionne pas dans la classe Voeux.java malgré l'import donc on est obligé de le faire manuellement ici
         Resources res = getResources();
-        String[] text = new String[10];
+        String[] originaltext = res.getStringArray(R.array.phrases_voeux_vierge);
+        Voeux voeux = new Voeux(); //Création de l'objet
+        voeux.setOriginaltext(originaltext); //Remplissage de l'objet avec les phrase prédéfinies vierges
+        String[] listvoeux = voeux.getOriginaltext(); //Remplissage d'un array avec la liste des phrases
 
-        text[0] = res.getString(R.string.voeux_anniversaire1, "...");
-        text[1] = res.getString(R.string.voeux_anniversaire2, "...");
-        text[2] = res.getString(R.string.voeux_anniversaire3, "...");
-        text[3] = res.getString(R.string.voeux_fete, "...");
-        text[4] = res.getString(R.string.voeux_noel1, "...");
-        text[5] = res.getString(R.string.voeux_noel2, "...");
-        text[6] = res.getString(R.string.voeux_mariage, "...");
-        text[7] = res.getString(R.string.voeux_nouvel_an1, "...");
-        text[8] = res.getString(R.string.voeux_nouvel_an2, "...");
-        text[9] = res.getString(R.string.voeux_nouvel_an3, "...");
-
+        //Affichage de l'array dans la listview
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, text);
+                android.R.layout.simple_list_item_single_choice, listvoeux);
         listViewWish.setAdapter(adapter);
+
+        listViewWish.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            public void onItemClick(AdapterView<?> parent, View view,int position, long id)
+            {
+                long[] checkeditem = listViewWish.getCheckedItemIds();
+                if(checkeditem != null) {
+                    for(int i = 0; i < checkeditem.length; i++)
+                    {
+                        listViewWish.setItemChecked((int)checkeditem[i], false);
+                    }
+                }
+                listViewWish.setItemChecked(position, true);
+            }
+        });
 
         Button bouton_2 = (Button) findViewById(R.id.bouton_2);
         Button bouton_3 = (Button) findViewById(R.id.bouton_3);

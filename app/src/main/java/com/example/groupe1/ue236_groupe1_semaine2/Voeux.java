@@ -1,31 +1,36 @@
 package com.example.groupe1.ue236_groupe1_semaine2;
 
+import android.content.res.Resources;
+import android.support.v7.app.AppCompatActivity;
 
-public class Voeux {
-    //Variables de classe
-    private String prenom;
-    private String[] phrase_de_voeux = new String[10];
+public class Voeux extends AppCompatActivity {
+    //Variables d'instance
+    public String[] originaltext;
+    public String[] formatedtext;
+    public int id;
 
-    //Constructeur
+    //Créateur
 
-    //Constructeur
-    public Voeux(String prenom) {
-        this.prenom = prenom;
-        phrase_de_voeux[0] = "" + prenom + "";
-        phrase_de_voeux[1] = "" + prenom + "";
-        phrase_de_voeux[2] = "" + prenom + "";
-        phrase_de_voeux[3] = "" + prenom + "";
-        phrase_de_voeux[4] = "" + prenom + "";
-        phrase_de_voeux[5] = "" + prenom + "";
-        phrase_de_voeux[6] = "" + prenom + "";
-        phrase_de_voeux[7] = "" + prenom + "";
-        phrase_de_voeux[8] = "" + prenom + "";
-        phrase_de_voeux[9] = "" + prenom + "";
+    public Voeux() {
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    //Méthodes
+
+    public void setOriginaltext(String[] text) {
+        originaltext = text;
+    }
+
+    public void setFormatedtext(String[] prenom, int id) {
+        for (int i = 0; i < prenom.length; i++) {
+            formatedtext[i] = String.format(originaltext[id], prenom[i]);
+        }
+    }
+
+    public String[] getOriginaltext() {
+        return originaltext;
+    }
+
+    public String[] getFormatedtext() {
+        return formatedtext;
     }
 }
-
-

@@ -18,13 +18,16 @@ import java.util.ArrayList;
 
 public class SecondActivity extends AppCompatActivity {
 
+
+    final Voeux voeux = new Voeux(); //Création de l'objet
+    ArrayList<Contact> contacts = new ArrayList<Contact>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.secondactivity_main);
 
         //Récupération des contacts et affichage des noms
-        ArrayList<Contact> contacts = getIntent().getExtras().getParcelableArrayList("Contacts");
+        contacts = getIntent().getExtras().getParcelableArrayList("Contacts");
         TextView retourcontact = (TextView) findViewById(R.id.RecapContact);
         String ListNoms;
         if(contacts == null)
@@ -46,7 +49,6 @@ public class SecondActivity extends AppCompatActivity {
         //Initialisation de l'objet Voeux, la fonction getResources() ne fonctionne pas dans la classe Voeux.java malgré l'import donc on est obligé de le faire manuellement ici
         Resources res = getResources();
         String[] originaltext = res.getStringArray(R.array.phrases_voeux_vierge);
-        final Voeux voeux = new Voeux(); //Création de l'objet
         voeux.setOriginaltext(originaltext); //Remplissage de l'objet avec les phrase prédéfinies vierges
         String[] listvoeux = voeux.getOriginaltext(); //Remplissage d'un array avec la liste des phrases
 
@@ -77,7 +79,7 @@ public class SecondActivity extends AppCompatActivity {
         bouton_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                creerToast(v);
+                suiteActivite(v);
             }
         });
 
@@ -90,10 +92,15 @@ public class SecondActivity extends AppCompatActivity {
 
     }
 
-    public void creerToast(View view) {
-        Toast.makeText(getApplicationContext(), "Le bouton de validation a été cliqué.", Toast.LENGTH_SHORT).show();
-        Intent startOldActivity = new Intent(this, MainActivity.class);
-        startActivity(startOldActivity);
+    public void suiteActivite(View view) {
+        Intent envoisms = new Intent(this, MainActivity.class);
+        String[] prenom = new String[contacts.size()]; //On récupère les noms de la liste de contact dans un tableau
+        for(int i = 0; i < contacts.size(); i++) {
+            prenom[i] = contacts.get(i).getNom();
+        }
+        voeux.setFormatedtext(prenom); //On initialise la phrase choisie avec le(s) prénom(s)
+        String[] list_voeux_perso = voeux.getFormatedtext(); //On récupère le tableau obtenu ci-dessus
+        startActivity(envoisms);
     }
 
     public void retourActivite(View view) {

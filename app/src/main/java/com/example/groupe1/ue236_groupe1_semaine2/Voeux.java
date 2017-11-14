@@ -20,7 +20,7 @@ public class Voeux extends AppCompatActivity {
         originaltext = text;
     }
 
-    public void setFormatedtext(String[] prenom, int id) {
+    public void setFormatedtext(String[] prenom) {
         for (int i = 0; i < prenom.length; i++) {
             formatedtext[i] = String.format(originaltext[id], prenom[i]);
         }

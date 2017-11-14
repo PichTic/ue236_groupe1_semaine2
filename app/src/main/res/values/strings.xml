@@ -9,7 +9,8 @@
     <string name="bouton_2">Validation</string>
     <string name="bouton_3">Annulation</string>
 
-    <string-array name="phrases_voeux_vierge"> //On va utiliser un string array afin de rentrer les phrases dans un array dans les fonctions
+    <string-array name="phrases_voeux_vierge">//On va utiliser un string array afin de rentrer les
+        phrases dans un array dans les fonctions
         <item>Joyeux anniversaire ...!</item>
         <item>Petite pensée pour toi ... en ce jour d\'anniversaire.</item>
         <item>Je te souhaite un bon anniversaire ...!</item>
@@ -22,8 +23,10 @@
         <item>Petite pensée pour toi ... pour cette nouvelle année.</item>
     </string-array>
 
-    <string-array name="phrases_voeux_a_remplir"> //On va utiliser un string array afin de rentrer les phrases dans un array dans les fonctions
-        <item>Joyeux anniversaire %1$s!</item> //Le %1$s définie une variable à remplir
+    <string-array name="phrases_voeux_a_remplir">//On va utiliser un string array afin de rentrer
+        les phrases dans un array dans les fonctions
+        <item>Joyeux anniversaire %1$s!</item>
+        //Le %1$s définie une variable à remplir
         <item>Petite pensée pour toi %1$s en ce jour d\'anniversaire.</item>
         <item>Je te souhaite un bon anniversaire %1$s!</item>
         <item>Joyeuse fête %1$s!</item>

@@ -46,7 +46,7 @@ public class SecondActivity extends AppCompatActivity {
         //Initialisation de l'objet Voeux, la fonction getResources() ne fonctionne pas dans la classe Voeux.java malgré l'import donc on est obligé de le faire manuellement ici
         Resources res = getResources();
         String[] originaltext = res.getStringArray(R.array.phrases_voeux_vierge);
-        Voeux voeux = new Voeux(); //Création de l'objet
+        final Voeux voeux = new Voeux(); //Création de l'objet
         voeux.setOriginaltext(originaltext); //Remplissage de l'objet avec les phrase prédéfinies vierges
         String[] listvoeux = voeux.getOriginaltext(); //Remplissage d'un array avec la liste des phrases
 
@@ -67,6 +67,7 @@ public class SecondActivity extends AppCompatActivity {
                     }
                 }
                 listViewWish.setItemChecked(position, true);
+                voeux.id = position;
             }
         });
 

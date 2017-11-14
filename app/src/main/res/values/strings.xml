@@ -11,16 +11,16 @@
 
     <string-array name="phrases_voeux_vierge">//On va utiliser un string array afin de rentrer les
         phrases dans un array dans les fonctions
-        <item>Joyeux anniversaire ...!</item>
-        <item>Petite pensée pour toi ... en ce jour d\'anniversaire.</item>
-        <item>Je te souhaite un bon anniversaire ...!</item>
-        <item>Joyeuse fête ...!</item>
-        <item>Joyeux Noël ...!</item>
-        <item>Petite pensée pour toi ... en cette veillée de Noël!</item>
-        <item>J\'ai appris la nouvelle, aujourd\'hui est un  grand jour pour toi ..., toutes mes félicitations!</item>
-        <item>Joyeuses Fêtes de fin d\'année ...!</item>
-        <item>Joyeuse nouvelle année ...!</item>
-        <item>Petite pensée pour toi ... pour cette nouvelle année.</item>
+        <item>Joyeux anniversaire <i>&lt;prenom></i>!</item>
+        <item>Petite pensée pour toi <i>&lt;prenom></i> en ce jour d\'anniversaire.</item>
+        <item>Je te souhaite un bon anniversaire <b>&lt;prenom></b>!</item>
+        <item>Joyeuse fête <i>&lt;prenom></i>!</item>
+        <item>Joyeux Noël <i>&lt;prenom></i>!</item>
+        <item>Petite pensée pour toi <i>&lt;prenom></i> en cette veillée de Noël!</item>
+        <item>Toutes mes félicitations <i>&lt;prenom></i>, aujourd\'hui est un  grand jour pour toi!</item>
+        <item>Joyeuses Fêtes de fin d\'année <i>&lt;prenom></i>!</item>
+        <item>Joyeuse nouvelle année <i>&lt;prenom></i>!</item>
+        <item>Petite pensée pour toi <i>&lt;prenom></i> pour cette nouvelle année.</item>
     </string-array>
 
     <string-array name="phrases_voeux_a_remplir">//On va utiliser un string array afin de rentrer
@@ -32,7 +32,7 @@
         <item>Joyeuse fête %1$s!</item>
         <item>Joyeux Noël %1$s!</item>
         <item>Petite pensée pour toi %1$s en cette veillée de Noël!</item>
-        <item>J\'ai appris la nouvelle, aujourd\'hui est un  grand jour pour toi %1$s, toutes mes félicitations!</item>
+        <item>Toutes mes félicitations %1$s, aujourd\'hui est un  grand jour pour toi!</item>
         <item>Joyeuses Fêtes de fin d'année %1$s!</item>
         <item>Joyeuse nouvelle année %1$s!</item>
         <item>Petite pensée pour toi %1$s pour cette nouvelle année.</item>

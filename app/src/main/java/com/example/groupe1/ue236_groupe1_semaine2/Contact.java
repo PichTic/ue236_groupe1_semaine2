@@ -56,15 +56,6 @@ public class Contact implements Parcelable {
 
     //Méthodes
 
-    public static ArrayList<Contact> getContacts() {
-        ArrayList<Contact> contacts = new ArrayList<Contact>();
-        contacts.add(new Contact("Pichot", "Vincent", "0688320407"));
-        contacts.add(new Contact("Michaud", "Emmanuel", "0633216547"));
-        contacts.add(new Contact("Latouille", "Melissa", "0656458957"));
-        contacts.add(new Contact("Lombardi", "Marion", "0678956421"));
-        return contacts;
-    }
-
     public void setNom(String nom) {
         this.nom = nom;
     }

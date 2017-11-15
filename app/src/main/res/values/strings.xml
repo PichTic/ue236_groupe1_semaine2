@@ -10,14 +10,32 @@
     <string name="bouton_validation">Validation</string>
     <string name="bouton_annulation">Annulation</string>
     <!-- Phrases de Voeux -->
-    <string name="voeux_anniversaire1">Joyeux anniversaire %1$s!</string> //Le %1$s définie une variable à remplir
-    <string name="voeux_anniversaire2">Petite pensée pour toi %1$s en ce jour d\'anniversaire.</string>
-    <string name="voeux_anniversaire3">Je te souhaite un bon anniversaire %1$s!</string>
-    <string name="voeux_fete">Joyeuse fête %1$s!</string>
-    <string name="voeux_noel1">Joyeux Noël %1$s!</string>
-    <string name="voeux_noel2">Petite pensée pour toi %1$s en cette veillée de Noël!</string>
-    <string name="voeux_mariage">J\'ai appris la nouvelle, aujourd\'hui est un  grand jour pour toi %1$s, toutes mes félicitations!</string>
-    <string name="voeux_nouvel_an1">J\'espère que tes résolutions sont prêtes %1$s, en tout cas je te souhaite le meilleur pour cette nouvelle année!</string>
-    <string name="voeux_nouvel_an2">Joyeuse nouvelle année %1$s!</string>
-    <string name="voeux_nouvel_an3">Petite pensée pour toi %1$s pour cette nouvelle année.</string>
+    <string-array name="phrases_voeux_vierge">//On va utiliser un string array afin de rentrer les
+        phrases dans un array dans les fonctions
+        <item>Joyeux anniversaire <i>&lt;prenom></i>!</item>
+        <item>Petite pensée pour toi <i>&lt;prenom></i> en ce jour d\'anniversaire.</item>
+        <item>Je te souhaite un bon anniversaire <b>&lt;prenom></b>!</item>
+        <item>Joyeuse fête <i>&lt;prenom></i>!</item>
+        <item>Joyeux Noël <i>&lt;prenom></i>!</item>
+        <item>Petite pensée pour toi <i>&lt;prenom></i> en cette veillée de Noël!</item>
+        <item>Toutes mes félicitations <i>&lt;prenom></i>, aujourd\'hui est un  grand jour pour toi!</item>
+        <item>Joyeuses Fêtes de fin d\'année <i>&lt;prenom></i>!</item>
+        <item>Joyeuse nouvelle année <i>&lt;prenom></i>!</item>
+        <item>Petite pensée pour toi <i>&lt;prenom></i> pour cette nouvelle année.</item>
+    </string-array>
+
+    <string-array name="phrases_voeux_a_remplir">//On va utiliser un string array afin de rentrer
+        les phrases dans un array dans les fonctions
+        <item>Joyeux anniversaire %1$s!</item>
+        //Le %1$s définie une variable à remplir
+        <item>Petite pensée pour toi %1$s en ce jour d\'anniversaire.</item>
+        <item>Je te souhaite un bon anniversaire %1$s!</item>
+        <item>Joyeuse fête %1$s!</item>
+        <item>Joyeux Noël %1$s!</item>
+        <item>Petite pensée pour toi %1$s en cette veillée de Noël!</item>
+        <item>Toutes mes félicitations %1$s, aujourd\'hui est un  grand jour pour toi!</item>
+        <item>Joyeuses Fêtes de fin d'année %1$s!</item>
+        <item>Joyeuse nouvelle année %1$s!</item>
+        <item>Petite pensée pour toi %1$s pour cette nouvelle année.</item>
+    </string-array>
 </resources>

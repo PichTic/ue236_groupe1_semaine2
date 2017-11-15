@@ -11,10 +11,10 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
-    <!-- Pour envoyer SMS :
-<uses-permission android:name="android.permission.SEND_SMS"></uses-permission>  -->
-
+    <!--
+Pour envoyer SMS :
+<uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
+    -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,14 +22,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.groupe1.ue236_groupe1_semaine2.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.groupe1.ue236_groupe1_semaine2.SecondActivity"></activity>
+        <activity android:name=".SecondActivity" />
+        <activity android:name=".ChangeNameActivity"></activity>
     </application>
 
 </manifest>

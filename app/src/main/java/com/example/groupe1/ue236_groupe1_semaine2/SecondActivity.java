@@ -23,8 +23,8 @@ import java.util.ArrayList;
 public class SecondActivity extends AppCompatActivity {
 
 
-    final Voeux voeux = new Voeux(); //Création de l'objet
     ArrayList<Contact> contacts = new ArrayList<Contact>();
+    final Voeux voeux = new Voeux(); //Création de l'objet
     String[] list_voeux_perso = new String[contacts.size()];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +81,7 @@ public class SecondActivity extends AppCompatActivity {
         });
 
         Button validation = (Button) findViewById(R.id.bouton_validation);
+        Button changename = (Button) findViewById(R.id.changename);
         Button annulation = (Button) findViewById(R.id.bouton_annulation);
 
       // Le bouton envoi de message :
@@ -95,6 +96,14 @@ public class SecondActivity extends AppCompatActivity {
                 voeux.Formattext(prenom); //On initialise la phrase choisie avec le(s) prénom(s)
                 list_voeux_perso = voeux.getFormatedtext(); //On récupère le tableau obtenu ci-dessus
                 confirmationEnvoi(v);
+            }
+        });
+
+      //Le Bouton de changement de nom
+        changename.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nouvelleActivite(v);
             }
         });
 
@@ -147,6 +156,12 @@ https://developer.android.com/reference/android/telephony/SmsManager.html
 http://a-renouard.developpez.com/tutoriels/android/sms/
 */
 
+    }
+
+    public void nouvelleActivite(View view) {
+        Intent startNewActivity = new Intent(this, ChangeNameActivity.class);
+        startNewActivity.putParcelableArrayListExtra("Contacts", contacts);
+        startActivity(startNewActivity);
     }
 
     // Méthode bouton annulation :

@@ -11,6 +11,7 @@ public class Contact implements Parcelable {
     private String nom;
     private String tel;
     private boolean is_checked;
+    private boolean changenom;
 
     public int describeContents()
     {
@@ -48,10 +49,12 @@ public class Contact implements Parcelable {
         this.nom = nom;
         this.tel = tel;
         this.is_checked = false;
+        this.changenom = false;
     }
 
     public Contact() {
         this.is_checked = false;
+        this.changenom = false;
     }
 
     //Méthodes
@@ -66,6 +69,19 @@ public class Contact implements Parcelable {
 
     public void setIsChecked(boolean is_checked) {
         this.is_checked = is_checked;
+    }
+
+    public void setChangenom() {
+        if(this.changenom) {
+            this.changenom = false;
+        }
+        else {
+            this.changenom = true;
+        }
+    }
+
+    public boolean isChangenom() {
+        return changenom;
     }
 
     public void changeIsChecked() {

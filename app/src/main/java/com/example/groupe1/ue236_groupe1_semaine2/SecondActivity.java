@@ -52,7 +52,7 @@ public class SecondActivity extends AppCompatActivity {
 
         //Initialisation de l'objet Voeux, la fonction getResources() ne fonctionne pas dans la classe Voeux.java malgré l'import donc on est obligé de le faire manuellement ici
         Resources res = getResources();
-        String[] originaltext = res.getStringArray(R.array.phrases_voeux_vierge);
+        String[] originaltext = res.getStringArray(R.array.phrases_voeux_a_remplir);
         voeux.setOriginaltext(originaltext); //Remplissage de l'objet avec les phrase prédéfinies vierges
         String[] listvoeux = voeux.getOriginaltext(); //Remplissage d'un array avec la liste des phrases
 
@@ -77,14 +77,14 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
-        Button bouton_2 = (Button) findViewById(R.id.bouton_2);
-        Button bouton_3 = (Button) findViewById(R.id.bouton_3);
+        Button validation = (Button) findViewById(R.id.bouton_validation);
+        Button annulation = (Button) findViewById(R.id.bouton_annulation);
 
       // Le bouton envoi de message :
         validation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                creerToast(v);
+                confirmationEnvoi(v);
             }
         });
 
@@ -104,6 +104,10 @@ public class SecondActivity extends AppCompatActivity {
         for(int i = 0; i < contacts.size(); i++) {
             prenom[i] = contacts.get(i).getNom();
         }
+        //Initialisation de l'objet Voeux, la fonction getResources() ne fonctionne pas dans la classe Voeux.java malgré l'import donc on est obligé de le faire manuellement ici
+        Resources res = getResources();
+        String[] originaltext = res.getStringArray(R.array.phrases_voeux_a_remplir);
+        voeux.setOriginaltext(originaltext); //Remplissage de l'objet avec les phrase prédéfinies vierges
         voeux.setFormatedtext(prenom); //On initialise la phrase choisie avec le(s) prénom(s)
         String[] list_voeux_perso = voeux.getFormatedtext(); //On récupère le tableau obtenu ci-dessus
 
@@ -111,7 +115,7 @@ public class SecondActivity extends AppCompatActivity {
         // Titre de l'alertdialog
         builder.setTitle("Confirmation envoi");
         // Message de l'alertdialog
-        builder.setMessage("Souhaitez-vous envoyer ce(s) message(s) ?");
+        builder.setMessage("Souhaitez-vous envoyer ce(s) message(s) ?"+list_voeux_perso[0]);
         // Pour le bouton "non"
         builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
             @Override

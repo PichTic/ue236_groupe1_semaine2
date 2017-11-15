@@ -89,5 +89,3 @@ public class Contact implements Parcelable {
         return is_checked;
     }
 }
-
-

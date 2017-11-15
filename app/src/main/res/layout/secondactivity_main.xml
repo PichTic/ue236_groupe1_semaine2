@@ -28,7 +28,8 @@
         android:choiceMode="singleChoice"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/RecapContact" />
+        app:layout_constraintTop_toBottomOf="@id/RecapContact"
+        android:listSelector="@drawable/list_color_selector"/> <!-- Personnalisation ListView -->
 
     <Button
         android:id="@+id/bouton_validation"

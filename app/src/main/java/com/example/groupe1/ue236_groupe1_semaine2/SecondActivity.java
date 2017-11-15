@@ -25,6 +25,7 @@ public class SecondActivity extends AppCompatActivity {
 
     final Voeux voeux = new Voeux(); //Création de l'objet
     ArrayList<Contact> contacts = new ArrayList<Contact>();
+    String[] list_voeux_perso = new String[contacts.size()];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,13 +53,15 @@ public class SecondActivity extends AppCompatActivity {
 
         //Initialisation de l'objet Voeux, la fonction getResources() ne fonctionne pas dans la classe Voeux.java malgré l'import donc on est obligé de le faire manuellement ici
         Resources res = getResources();
-        String[] originaltext = res.getStringArray(R.array.phrases_voeux_a_remplir);
+        String[] originaltext = res.getStringArray(R.array.phrases_voeux_vierge);
+        final String[] toformattext = res.getStringArray(R.array.phrases_voeux_a_remplir);
         voeux.setOriginaltext(originaltext); //Remplissage de l'objet avec les phrase prédéfinies vierges
+        voeux.setFormatedtext(toformattext);
         String[] listvoeux = voeux.getOriginaltext(); //Remplissage d'un array avec la liste des phrases
 
         //Affichage de l'array dans la listview
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_single_choice, listvoeux);
+                android.R.layout.simple_list_item_1, listvoeux);
         listViewWish.setAdapter(adapter);
 
         listViewWish.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -84,6 +87,13 @@ public class SecondActivity extends AppCompatActivity {
         validation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String[] prenom = new String[contacts.size()]; //On récupère les noms de la liste de contact dans un tableau
+                for(int i = 0; i < contacts.size(); i++) {
+                    prenom[i] = contacts.get(i).getNom();
+                }
+                voeux.setFormatedtext(toformattext);
+                voeux.Formattext(prenom); //On initialise la phrase choisie avec le(s) prénom(s)
+                list_voeux_perso = voeux.getFormatedtext(); //On récupère le tableau obtenu ci-dessus
                 confirmationEnvoi(v);
             }
         });
@@ -100,22 +110,12 @@ public class SecondActivity extends AppCompatActivity {
 
     // Méthodes bouton validation :
     public void confirmationEnvoi (View view) {
-        String[] prenom = new String[contacts.size()]; //On récupère les noms de la liste de contact dans un tableau
-        for(int i = 0; i < contacts.size(); i++) {
-            prenom[i] = contacts.get(i).getNom();
-        }
-        //Initialisation de l'objet Voeux, la fonction getResources() ne fonctionne pas dans la classe Voeux.java malgré l'import donc on est obligé de le faire manuellement ici
-        Resources res = getResources();
-        String[] originaltext = res.getStringArray(R.array.phrases_voeux_a_remplir);
-        voeux.setOriginaltext(originaltext); //Remplissage de l'objet avec les phrase prédéfinies vierges
-        voeux.setFormatedtext(prenom); //On initialise la phrase choisie avec le(s) prénom(s)
-        String[] list_voeux_perso = voeux.getFormatedtext(); //On récupère le tableau obtenu ci-dessus
 
         AlertDialog.Builder builder = new AlertDialog.Builder(SecondActivity.this);
         // Titre de l'alertdialog
         builder.setTitle("Confirmation envoi");
         // Message de l'alertdialog
-        builder.setMessage("Souhaitez-vous envoyer ce(s) message(s) ?"+list_voeux_perso[0]);
+        builder.setMessage("Souhaitez-vous envoyer ce(s) message(s) ?");
         // Pour le bouton "non"
         builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
             @Override

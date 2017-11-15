@@ -54,7 +54,7 @@ public class SecondActivity extends AppCompatActivity {
         //Initialisation de l'objet Voeux, la fonction getResources() ne fonctionne pas dans la classe Voeux.java malgré l'import donc on est obligé de le faire manuellement ici
         Resources res = getResources();
         String[] originaltext = res.getStringArray(R.array.phrases_voeux_vierge);
-        String[] toformattext = res.getStringArray(R.array.phrases_voeux_a_remplir);
+        final String[] toformattext = res.getStringArray(R.array.phrases_voeux_a_remplir);
         voeux.setOriginaltext(originaltext); //Remplissage de l'objet avec les phrase prédéfinies vierges
         voeux.setFormatedtext(toformattext);
         String[] listvoeux = voeux.getOriginaltext(); //Remplissage d'un array avec la liste des phrases
@@ -91,6 +91,7 @@ public class SecondActivity extends AppCompatActivity {
                 for(int i = 0; i < contacts.size(); i++) {
                     prenom[i] = contacts.get(i).getNom();
                 }
+                voeux.setFormatedtext(toformattext);
                 voeux.Formattext(prenom); //On initialise la phrase choisie avec le(s) prénom(s)
                 list_voeux_perso = voeux.getFormatedtext(); //On récupère le tableau obtenu ci-dessus
                 confirmationEnvoi(v);

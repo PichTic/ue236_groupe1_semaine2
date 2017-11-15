@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -49,14 +50,25 @@ public class ChangeNameActivity extends AppCompatActivity {
         changename.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String new_name;
-                new_name = getchangedname.getText().toString();
+                int checkckedcontrol = 0;
                 for(int i = 0; i < contacts.size(); i++) {
                     if(contacts.get(i).isChangenom()) {
-                        contacts.get(i).setNom(new_name);
+                        checkckedcontrol++;
                     }
                 }
-                RestartActivity(v);
+                if(checkckedcontrol > 0) {
+                    String new_name;
+                    new_name = getchangedname.getText().toString();
+                    for(int i = 0; i < contacts.size(); i++) {
+                        if(contacts.get(i).isChangenom()) {
+                            contacts.get(i).setNom(new_name);
+                        }
+                    }
+                    RestartActivity(v);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Aucun contact n'est sélectionné.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

@@ -9,8 +9,9 @@
 
     <!-- Personnalisation ListView -->
     <color name="text_color_default">#FFFFFFFF</color>
-    <color name="text_color_inverse">#00000C</color>
-    <color name="list_row_default">#FF80CBC4</color>
-    <color name="list_row_pressed">#FF212121</color>
-    <color name="list_row_selected">#FFFFFFFF</color>
+    <color name="text_color_inverse">#FF000000</color>
+    <color name="list_row_default">#FF212121</color>
+    <color name="list_row_pressed">#FF80CBC4</color>
+    <color name="list_row_selected">#FF000000</color>
+    <color name="accent_material_dark_1">#80cbc4</color>
 </resources>

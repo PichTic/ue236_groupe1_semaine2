@@ -3,5 +3,6 @@
     <!-- Personnalisation ListView -->
     <item android:state_pressed="true" android:color="@color/text_color_inverse" />
     <item android:state_focused="true" android:color="@color/text_color_inverse" />
+    <item android:state_selected="true" android:color="@color/list_row_selected"/>
     <item android:color="@color/text_color_default" />
 </selector>

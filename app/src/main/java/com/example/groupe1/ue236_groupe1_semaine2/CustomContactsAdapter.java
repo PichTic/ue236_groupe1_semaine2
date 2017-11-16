@@ -32,19 +32,17 @@ public class CustomContactsAdapter extends ArrayAdapter<Contact> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_contact, parent, false);
         }
 
-        // Get the data item for this position
+
         Contact contact = getItem(position);
 
-        // Lookup view for data population
         TextView Nom = (TextView) convertView.findViewById(R.id.Nom);
-        // Populate the data into the template view using the data object
+
         Nom.setText(contact.getNom());
-        // Retourne la vue
+
         return convertView;
     }
 

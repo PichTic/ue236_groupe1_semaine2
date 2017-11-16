@@ -14,6 +14,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -33,7 +34,7 @@ import java.util.ArrayList;
 
 public class SecondActivity extends AppCompatActivity {
 
-    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0 ;
+    private static final int PERMISSIONS_REQUEST_SEND_SMS = 100 ;
     String phoneNo;
     String message;
     ArrayList<Contact> contacts = new ArrayList<Contact>();
@@ -170,92 +171,68 @@ http://a-renouard.developpez.com/tutoriels/android/sms/
 
     }
     protected void sendSMSMessage() {
-        for(int i = 0; i < contacts.size(); i++) {
-            phoneNo = contacts.get(i).getTel();
-            message = list_voeux_perso[i];
-            // Add the phone number in the data
-            String SMS_SENT = "SMS Envoyé";
-            String SMS_DELIVERED = "SMS Reçu";
+        // Control de la version du SDK et si j'ai la permission d'acceder aux Contacts
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.SEND_SMS}, PERMISSIONS_REQUEST_SEND_SMS);
+        } else {
+            for (int i = 0; i < contacts.size(); i++) {
+                phoneNo = contacts.get(i).getTel();
+                message = list_voeux_perso[i];
+                // Add the phone number in the data
+                String SMS_SENT = "SMS Envoyé";
+                String SMS_DELIVERED = "SMS Reçu";
 
-            PendingIntent sentPendingIntent = PendingIntent.getBroadcast(this, 0, new Intent(SMS_SENT), 0);
-            PendingIntent deliveredPendingIntent = PendingIntent.getBroadcast(this, 0, new Intent(SMS_DELIVERED), 0);
+                PendingIntent sentPendingIntent = PendingIntent.getBroadcast(this, 0, new Intent(SMS_SENT), 0);
+                PendingIntent deliveredPendingIntent = PendingIntent.getBroadcast(this, 0, new Intent(SMS_DELIVERED), 0);
 
 // For when the SMS has been sent
-            registerReceiver(new BroadcastReceiver() {
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    switch (getResultCode()) {
-                        case Activity.RESULT_OK:
-                            Toast.makeText(context, "Envoi du SMS réussi", Toast.LENGTH_SHORT).show();
-                            break;
-                        case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
-                            Toast.makeText(context, "Erreur générique", Toast.LENGTH_SHORT).show();
-                            break;
-                        case SmsManager.RESULT_ERROR_NO_SERVICE:
-                            Toast.makeText(context, "Service inaccessible", Toast.LENGTH_SHORT).show();
-                            break;
-                        case SmsManager.RESULT_ERROR_NULL_PDU:
-                            Toast.makeText(context, "Pas de PDU renseigné", Toast.LENGTH_SHORT).show();
-                            break;
-                        case SmsManager.RESULT_ERROR_RADIO_OFF:
-                            Toast.makeText(context, "Réseau hors ligne", Toast.LENGTH_SHORT).show();
-                            break;
+                registerReceiver(new BroadcastReceiver() {
+                    @Override
+                    public void onReceive(Context context, Intent intent) {
+                        switch (getResultCode()) {
+                            case Activity.RESULT_OK:
+                                Toast.makeText(context, "Envoi du SMS réussi", Toast.LENGTH_SHORT).show();
+                                break;
+                            case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+                                Toast.makeText(context, "Erreur générique", Toast.LENGTH_SHORT).show();
+                                break;
+                            case SmsManager.RESULT_ERROR_NO_SERVICE:
+                                Toast.makeText(context, "Service inaccessible", Toast.LENGTH_SHORT).show();
+                                break;
+                            case SmsManager.RESULT_ERROR_NULL_PDU:
+                                Toast.makeText(context, "Pas de PDU renseigné", Toast.LENGTH_SHORT).show();
+                                break;
+                            case SmsManager.RESULT_ERROR_RADIO_OFF:
+                                Toast.makeText(context, "Réseau hors ligne", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
                     }
-                }
-            }, new IntentFilter(SMS_SENT));
+                }, new IntentFilter(SMS_SENT));
 
 // For when the SMS has been delivered
-            registerReceiver(new BroadcastReceiver() {
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    switch (getResultCode()) {
-                        case Activity.RESULT_OK:
-                            Toast.makeText(getBaseContext(), "SMS envoyé", Toast.LENGTH_SHORT).show();
-                            break;
-                        case Activity.RESULT_CANCELED:
-                            Toast.makeText(getBaseContext(), "SMS non envoyé", Toast.LENGTH_SHORT).show();
-                            break;
+                registerReceiver(new BroadcastReceiver() {
+                    @Override
+                    public void onReceive(Context context, Intent intent) {
+                        switch (getResultCode()) {
+                            case Activity.RESULT_OK:
+                                Toast.makeText(getBaseContext(), "SMS envoyé", Toast.LENGTH_SHORT).show();
+                                break;
+                            case Activity.RESULT_CANCELED:
+                                Toast.makeText(getBaseContext(), "SMS non envoyé", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
                     }
-                }
-            }, new IntentFilter(SMS_DELIVERED));
+                }, new IntentFilter(SMS_DELIVERED));
 
 // Get the default instance of SmsManager
-            SmsManager smsManager = SmsManager.getDefault();
+                SmsManager smsManager = SmsManager.getDefault();
 // Send a text based SMS
-            smsManager.sendTextMessage(phoneNo, null, message, sentPendingIntent, deliveredPendingIntent);
+                smsManager.sendTextMessage(phoneNo, null, message, sentPendingIntent, deliveredPendingIntent);
 
-            /*if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.SEND_SMS)
-                    != PackageManager.PERMISSION_GRANTED) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.SEND_SMS)) {
-                } else {
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{Manifest.permission.SEND_SMS},
-                            MY_PERMISSIONS_REQUEST_SEND_SMS);
-                }
-            }*/
-        }
-    }
 
-    /*public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_SEND_SMS: {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(phoneNo, null, message, null, null);
-                    Toast.makeText(getApplicationContext(), "SMS envoyé.",
-                            Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(),
-                            "Echec de l'envoi, veuillez réessayer.", Toast.LENGTH_LONG).show();
-                    return;
-                }
             }
         }
-
-    }*/
+    }
 
     public void nouvelleActivite(View view) {
         Intent startNewActivity = new Intent(this, ChangeNameActivity.class);

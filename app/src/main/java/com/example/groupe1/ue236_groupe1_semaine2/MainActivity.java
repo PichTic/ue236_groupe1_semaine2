@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         // Control de la version du SDK et si j'ai la permission d'acceder aux Contacts
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
+            onRefresh();
         } else {
             ContentResolver cr = getContentResolver();
             Cursor cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
@@ -173,5 +174,10 @@ public class MainActivity extends AppCompatActivity {
         }
         startNewActivity.putParcelableArrayListExtra("Contacts", checkedcontact);
         startActivity(startNewActivity);
+    }
+
+    protected void onRefresh() {
+        super.onResume();
+        this.onCreate(null);
     }
 }

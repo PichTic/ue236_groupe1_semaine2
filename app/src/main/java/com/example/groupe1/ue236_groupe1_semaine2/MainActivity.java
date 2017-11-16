@@ -103,6 +103,18 @@ public class MainActivity extends AppCompatActivity {
                     Contact contact = new Contact();
                     String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
                     contact.setNom(name);
+                    /*String first_name ="";
+                    String last_name = "";
+                    while (cursor.moveToNext()) {
+                        if(cursor.getString(cursor.getColumnIndex
+                                (ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME))!=null){
+                            first_name = cursor.getString(cursor.getColumnIndex
+                                    (ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
+                            last_name = cursor.getString(cursor.getColumnIndex
+                                    (ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
+                            contact.setLast_name(last_name);
+                            contact.setFirst_name(first_name);
+                        }}*/
                     int num = cursor.getInt(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
                     if (num == 1) {
                         Uri uri2 = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;

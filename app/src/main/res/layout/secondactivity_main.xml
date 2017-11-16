@@ -14,41 +14,61 @@
         android:layout_margin="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Personnalisation ListView -->
 
     <ListView
         android:id="@+id/wishlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:layout_marginBottom="20dp"
+        android:choiceMode="singleChoice"
         android:clickable="true"
         android:focusable="true"
-        android:overScrollMode="always"
+        android:listSelector="@drawable/list_color_selector"
         android:scrollbars="vertical"
-        android:choiceMode="singleChoice"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/RecapContact"
-        android:listSelector="@drawable/list_color_selector"/> <!-- Personnalisation ListView -->
+        app:layout_constraintTop_toBottomOf="@id/RecapContact" />
 
-    <Button
-        android:id="@+id/bouton_validation"
-        android:layout_width="wrap_content"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/bouton_validation"
-        android:layout_margin="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <Button
-        android:id="@+id/bouton_annulation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/bouton_annulation"
-        android:layout_margin="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"  />
+        <Button
+            android:id="@+id/bouton_annulation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="@string/bouton_annulation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <Button
+            android:id="@+id/changename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="@string/changename"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toRightOf="@+id/bouton_annulation"
+            app:layout_constraintRight_toLeftOf="@+id/bouton_validation" />
+
+        <Button
+            android:id="@+id/bouton_validation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="@string/bouton_validation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -125,7 +125,7 @@ public class SecondActivity extends AppCompatActivity {
         annulation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                retourActivite(v);
+                retourActivite();
             }
         });
 
@@ -161,7 +161,6 @@ public class SecondActivity extends AppCompatActivity {
     protected void sendSMSMessage() {
         // Contrôle de la version du SDK et si j'ai la permission d'envoi de sms
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && this.checkSelfPermission(Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(getApplicationContext(), "Erreur de permission", Toast.LENGTH_SHORT).show();
             requestPermissions(new String[]{Manifest.permission.SEND_SMS}, PERMISSIONS_REQUEST_SEND_SMS);
         } else {
             for (int i = 0; i < contacts.size(); i++) {
@@ -205,6 +204,7 @@ public class SecondActivity extends AppCompatActivity {
                         switch (getResultCode()) {
                             case Activity.RESULT_OK:
                                 Toast.makeText(getBaseContext(), "SMS envoyé", Toast.LENGTH_SHORT).show();
+                                retourActivite();
                                 break;
                             case Activity.RESULT_CANCELED:
                                 Toast.makeText(getBaseContext(), "SMS non envoyé", Toast.LENGTH_SHORT).show();
@@ -237,7 +237,7 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     // Méthode bouton annulation :
-    public void retourActivite(View view) {
+    public void retourActivite() {
         Intent backToOldActivity = new Intent(this, MainActivity.class);
         startActivity(backToOldActivity);
     }

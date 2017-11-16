@@ -1,13 +1,24 @@
 package com.example.groupe1.ue236_groupe1_semaine2;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -22,7 +33,9 @@ import java.util.ArrayList;
 
 public class SecondActivity extends AppCompatActivity {
 
-
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0 ;
+    String phoneNo;
+    String message;
     ArrayList<Contact> contacts = new ArrayList<Contact>();
     final Voeux voeux = new Voeux(); //Création de l'objet
     String[] list_voeux_perso = new String[contacts.size()];
@@ -42,7 +55,7 @@ public class SecondActivity extends AppCompatActivity {
         else {
             ListNoms = "Sélectionnés : ";
             for (int i = 0; i < contacts.size(); i++) {
-                ListNoms += contacts.get(i).getNom() + "; ";
+                ListNoms += contacts.get(i).getTel() + "; ";
             }
         }
         retourcontact.setText(ListNoms);
@@ -68,7 +81,7 @@ public class SecondActivity extends AppCompatActivity {
         {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id)
             {
-                long[] checkeditem = listViewWish.getCheckedItemIds();
+                long[] checkeditem = listViewWish.getCheckedItemIds(); //Fonction qui bloque le choix sur une seule phrase
                 if(checkeditem != null) {
                     for(int i = 0; i < checkeditem.length; i++)
                     {
@@ -118,7 +131,7 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     // Méthodes bouton validation :
-    public void confirmationEnvoi (View view) {
+    public void confirmationEnvoi (final View view) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(SecondActivity.this);
         // Titre de l'alertdialog
@@ -138,9 +151,8 @@ public class SecondActivity extends AppCompatActivity {
         builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(),
-                        "Message(s) envoyé(s)",
-                        Toast.LENGTH_LONG).show();
+                sendSMSMessage();
+                retourActivite(view);
             }
         });
         builder.show();
@@ -157,6 +169,93 @@ http://a-renouard.developpez.com/tutoriels/android/sms/
 */
 
     }
+    protected void sendSMSMessage() {
+        for(int i = 0; i < contacts.size(); i++) {
+            phoneNo = contacts.get(i).getTel();
+            message = list_voeux_perso[i];
+            // Add the phone number in the data
+            String SMS_SENT = "SMS Envoyé";
+            String SMS_DELIVERED = "SMS Reçu";
+
+            PendingIntent sentPendingIntent = PendingIntent.getBroadcast(this, 0, new Intent(SMS_SENT), 0);
+            PendingIntent deliveredPendingIntent = PendingIntent.getBroadcast(this, 0, new Intent(SMS_DELIVERED), 0);
+
+// For when the SMS has been sent
+            registerReceiver(new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    switch (getResultCode()) {
+                        case Activity.RESULT_OK:
+                            Toast.makeText(context, "Evoi du SMS réussi", Toast.LENGTH_SHORT).show();
+                            break;
+                        case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+                            Toast.makeText(context, "Erreur générique", Toast.LENGTH_SHORT).show();
+                            break;
+                        case SmsManager.RESULT_ERROR_NO_SERVICE:
+                            Toast.makeText(context, "Service inaccessible", Toast.LENGTH_SHORT).show();
+                            break;
+                        case SmsManager.RESULT_ERROR_NULL_PDU:
+                            Toast.makeText(context, "Pas de PDU renseigné", Toast.LENGTH_SHORT).show();
+                            break;
+                        case SmsManager.RESULT_ERROR_RADIO_OFF:
+                            Toast.makeText(context, "Réseau hors ligne", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
+            }, new IntentFilter(SMS_SENT));
+
+// For when the SMS has been delivered
+            registerReceiver(new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    switch (getResultCode()) {
+                        case Activity.RESULT_OK:
+                            Toast.makeText(getBaseContext(), "SMS envoyé", Toast.LENGTH_SHORT).show();
+                            break;
+                        case Activity.RESULT_CANCELED:
+                            Toast.makeText(getBaseContext(), "SMS non envoyé", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
+            }, new IntentFilter(SMS_DELIVERED));
+
+// Get the default instance of SmsManager
+            SmsManager smsManager = SmsManager.getDefault();
+// Send a text based SMS
+            smsManager.sendTextMessage(phoneNo, null, message, sentPendingIntent, deliveredPendingIntent);
+
+            /*if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.SEND_SMS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.SEND_SMS)) {
+                } else {
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.SEND_SMS},
+                            MY_PERMISSIONS_REQUEST_SEND_SMS);
+                }
+            }*/
+        }
+    }
+
+    /*public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_SEND_SMS: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(phoneNo, null, message, null, null);
+                    Toast.makeText(getApplicationContext(), "SMS envoyé.",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "Echec de l'envoi, veuillez réessayer.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
+        }
+
+    }*/
 
     public void nouvelleActivite(View view) {
         Intent startNewActivity = new Intent(this, ChangeNameActivity.class);

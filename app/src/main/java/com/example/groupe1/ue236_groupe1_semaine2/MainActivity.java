@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
         {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id)
             {
-                //here i want to get the items
-                adapter.getItem(position).changeIsChecked();   // this is your object
+
+                adapter.getItem(position).changeIsChecked();   // Récupération de l'objet
             }
         });
 
@@ -101,7 +101,9 @@ public class MainActivity extends AppCompatActivity {
             if (cursor.moveToFirst()) {
                 do {
                     Contact contact = new Contact();
+                    String phone;
                     String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                    String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
                     contact.setNom(name);
                     /*String first_name ="";
                     String last_name = "";
@@ -115,18 +117,13 @@ public class MainActivity extends AppCompatActivity {
                             contact.setLast_name(last_name);
                             contact.setFirst_name(first_name);
                         }}*/
-                    int num = cursor.getInt(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
-                    if (num == 1) {
-                        Uri uri2 = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
-                        String selection2 = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "= ?";
-                        String[] projection = null;
-                        String[] selectionArgs2 = null;
-                        String sortOrder = null;
-                        Cursor cur2 = cr.query(uri2, projection, selection2, selectionArgs2, sortOrder);
-                        while (cur2.moveToNext()) {
-                            String phone = cur2.getString(cur2.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                    if (Integer.parseInt(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
+                        Cursor pCur = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{id}, null);
+                        while (pCur.moveToNext()) {
+                            phone = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                             contact.setTel(phone);
                         }
+                        pCur.close();
                     }
                     arrayOfContacts.add(contact);
                 } while (cursor.moveToNext());

@@ -157,19 +157,8 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
         builder.show();
-
-/*envoi sms
-if builder.setPositiveButton = true
-message = listViewWish
-nom = ListNoms
-SmsManager.getDefault().sendTextMessage(nom, null, message, null);
-
-sources :
-https://developer.android.com/reference/android/telephony/SmsManager.html
-http://a-renouard.developpez.com/tutoriels/android/sms/
-*/
-
     }
+
     protected void sendSMSMessage() {
         // Control de la version du SDK et si j'ai la permission d'acceder aux Contacts
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
@@ -228,8 +217,6 @@ http://a-renouard.developpez.com/tutoriels/android/sms/
                 SmsManager smsManager = SmsManager.getDefault();
 // Send a text based SMS
                 smsManager.sendTextMessage(phoneNo, null, message, sentPendingIntent, deliveredPendingIntent);
-
-
             }
         }
     }

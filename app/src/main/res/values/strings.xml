@@ -22,6 +22,7 @@
         <item>Joyeuses Fêtes de fin d\'année <i>&lt;prenom></i>!</item>
         <item>Joyeuse nouvelle année <i>&lt;prenom></i>!</item>
         <item>Petite pensée pour toi <i>&lt;prenom></i> pour cette nouvelle année.</item>
+        <item></item>
     </string-array>
 
     <string-array name="phrases_voeux_a_remplir">//On va utiliser un string array afin de rentrer

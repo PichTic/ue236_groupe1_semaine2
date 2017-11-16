@@ -55,7 +55,7 @@ public class SecondActivity extends AppCompatActivity {
         else {
             ListNoms = "Sélectionnés : ";
             for (int i = 0; i < contacts.size(); i++) {
-                ListNoms += contacts.get(i).getTel() + "; ";
+                ListNoms += contacts.get(i).getNom() + "; ";
             }
         }
         retourcontact.setText(ListNoms);
@@ -186,7 +186,7 @@ http://a-renouard.developpez.com/tutoriels/android/sms/
                 public void onReceive(Context context, Intent intent) {
                     switch (getResultCode()) {
                         case Activity.RESULT_OK:
-                            Toast.makeText(context, "Evoi du SMS réussi", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Envoi du SMS réussi", Toast.LENGTH_SHORT).show();
                             break;
                         case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
                             Toast.makeText(context, "Erreur générique", Toast.LENGTH_SHORT).show();

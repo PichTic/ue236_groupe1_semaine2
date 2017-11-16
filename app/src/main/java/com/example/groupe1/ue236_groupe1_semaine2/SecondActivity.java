@@ -245,5 +245,5 @@ http://a-renouard.developpez.com/tutoriels/android/sms/
         Intent backToOldActivity = new Intent(this, MainActivity.class);
         startActivity(backToOldActivity);
     }
-    
+
 }

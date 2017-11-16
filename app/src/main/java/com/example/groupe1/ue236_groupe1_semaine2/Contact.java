@@ -10,6 +10,8 @@ public class Contact implements Parcelable {
     //Variables d'instance
     private String nom;
     private String tel;
+    private String first_name;
+    private String last_name;
     private boolean is_checked;
     private boolean changenom;
 
@@ -50,6 +52,8 @@ public class Contact implements Parcelable {
         this.tel = tel;
         this.is_checked = false;
         this.changenom = false;
+       /* this.first_name = first_name;
+        this.last_name = last_name;*/
     }
 
     public Contact() {
@@ -63,6 +67,22 @@ public class Contact implements Parcelable {
         this.nom = nom;
     }
 
+    /*public String getFirst_name() {
+        return first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }*/
+
+    /*public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+*/
     public void setTel(String tel) {
         this.tel = tel;
     }

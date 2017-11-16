@@ -32,6 +32,7 @@ public class CustomContactsAdapter extends ArrayAdapter<Contact> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+// vérifie la présence d'une vue et la remplie le cas echéant
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_contact, parent, false);
         }
@@ -39,6 +40,7 @@ public class CustomContactsAdapter extends ArrayAdapter<Contact> {
 
         Contact contact = getItem(position);
 
+//Remplie la vue avec getNom
         TextView Nom = (TextView) convertView.findViewById(R.id.Nom);
 
         Nom.setText(contact.getNom());

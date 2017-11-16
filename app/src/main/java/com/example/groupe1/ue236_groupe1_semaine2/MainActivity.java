@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                                     (ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
                             contact.setLast_name(last_name);
                             contact.setFirst_name(first_name);
-                        }}
+                        }}*/
                     int num = cursor.getInt(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
                     if (num == 1) {
                         Uri uri2 = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                             String phone = cur2.getString(cur2.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                             contact.setTel(phone);
                         }
-                    }*/
+                    }
                     //@todo récupérer le numéro de téléphone du contact
                     arrayOfContacts.add(contact);
                 } while (cursor.moveToNext());

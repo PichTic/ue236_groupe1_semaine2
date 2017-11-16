@@ -153,15 +153,15 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 sendSMSMessage();
-                retourActivite(view);
             }
         });
         builder.show();
     }
 
     protected void sendSMSMessage() {
-        // Control de la version du SDK et si j'ai la permission d'acceder aux Contacts
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+        // Contrôle de la version du SDK et si j'ai la permission d'envoi de sms
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && this.checkSelfPermission(Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(getApplicationContext(), "Erreur de permission", Toast.LENGTH_SHORT).show();
             requestPermissions(new String[]{Manifest.permission.SEND_SMS}, PERMISSIONS_REQUEST_SEND_SMS);
         } else {
             for (int i = 0; i < contacts.size(); i++) {
@@ -217,6 +217,15 @@ public class SecondActivity extends AppCompatActivity {
                 SmsManager smsManager = SmsManager.getDefault();
 // Send a text based SMS
                 smsManager.sendTextMessage(phoneNo, null, message, sentPendingIntent, deliveredPendingIntent);
+            }
+        }
+    }
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == PERMISSIONS_REQUEST_SEND_SMS) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                sendSMSMessage();
+            } else {
+                Toast.makeText(this, "Autoriser l'acces à l'envoi SMS", Toast.LENGTH_SHORT).show();
             }
         }
     }

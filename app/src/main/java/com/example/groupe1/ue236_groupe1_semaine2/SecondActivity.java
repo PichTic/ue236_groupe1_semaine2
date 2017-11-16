@@ -166,14 +166,13 @@ public class SecondActivity extends AppCompatActivity {
             for (int i = 0; i < contacts.size(); i++) {
                 phoneNo = contacts.get(i).getTel();
                 message = list_voeux_perso[i];
-                // Add the phone number in the data
                 String SMS_SENT = "SMS Envoyé";
                 String SMS_DELIVERED = "SMS Reçu";
 
                 PendingIntent sentPendingIntent = PendingIntent.getBroadcast(this, 0, new Intent(SMS_SENT), 0);
                 PendingIntent deliveredPendingIntent = PendingIntent.getBroadcast(this, 0, new Intent(SMS_DELIVERED), 0);
 
-// For when the SMS has been sent
+
                 registerReceiver(new BroadcastReceiver() {
                     @Override
                     public void onReceive(Context context, Intent intent) {
@@ -197,7 +196,7 @@ public class SecondActivity extends AppCompatActivity {
                     }
                 }, new IntentFilter(SMS_SENT));
 
-// For when the SMS has been delivered
+
                 registerReceiver(new BroadcastReceiver() {
                     @Override
                     public void onReceive(Context context, Intent intent) {
@@ -213,9 +212,9 @@ public class SecondActivity extends AppCompatActivity {
                     }
                 }, new IntentFilter(SMS_DELIVERED));
 
-// Get the default instance of SmsManager
+
                 SmsManager smsManager = SmsManager.getDefault();
-// Send a text based SMS
+
                 smsManager.sendTextMessage(phoneNo, null, message, sentPendingIntent, deliveredPendingIntent);
             }
         }

@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         // Control de la version du SDK et si j'ai la permission d'acceder aux Contacts
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
+            onRefresh();
         } else {
             ContentResolver cr = getContentResolver();
             Cursor cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
@@ -105,18 +106,6 @@ public class MainActivity extends AppCompatActivity {
                     String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
                     String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
                     contact.setNom(name);
-                    /*String first_name ="";
-                    String last_name = "";
-                    while (cursor.moveToNext()) {
-                        if(cursor.getString(cursor.getColumnIndex
-                                (ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME))!=null){
-                            first_name = cursor.getString(cursor.getColumnIndex
-                                    (ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
-                            last_name = cursor.getString(cursor.getColumnIndex
-                                    (ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
-                            contact.setLast_name(last_name);
-                            contact.setFirst_name(first_name);
-                        }}*/
                     if (Integer.parseInt(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
                         Cursor pCur = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{id}, null);
                         while (pCur.moveToNext()) {
@@ -173,5 +162,8 @@ public class MainActivity extends AppCompatActivity {
         }
         startNewActivity.putParcelableArrayListExtra("Contacts", checkedcontact);
         startActivity(startNewActivity);
+    }
+    protected void onRefresh() {
+        super.onResume();
     }
 }

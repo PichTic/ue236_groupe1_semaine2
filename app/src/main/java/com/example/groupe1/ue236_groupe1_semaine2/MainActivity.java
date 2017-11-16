@@ -128,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
                             contact.setTel(phone);
                         }
                     }
-                    //@todo récupérer le numéro de téléphone du contact
                     arrayOfContacts.add(contact);
                 } while (cursor.moveToNext());
             }

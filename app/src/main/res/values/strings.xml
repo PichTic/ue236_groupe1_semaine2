@@ -10,8 +10,7 @@
     <string name="select_new_name">Veuillez sélectionner un nom à changer avant de valider le nouveau nom</string>
     <string name="new_name">Nouveau Nom</string>
     <!-- Phrases de Voeux -->
-    <string-array name="phrases_voeux_vierge">//On va utiliser un string array afin de rentrer les
-        phrases dans un array dans les fonctions
+    <string-array name="phrases_voeux_vierge">//On va utiliser un string array afin de rentrer les phrases dans un array dans les fonctions
         <item>Joyeux anniversaire <i>&lt;prenom></i>!</item>
         <item>Petite pensée pour toi <i>&lt;prenom></i> en ce jour d\'anniversaire.</item>
         <item>Je te souhaite un bon anniversaire <b>&lt;prenom></b>!</item>
@@ -22,7 +21,7 @@
         <item>Joyeuses Fêtes de fin d\'année <i>&lt;prenom></i>!</item>
         <item>Joyeuse nouvelle année <i>&lt;prenom></i>!</item>
         <item>Petite pensée pour toi <i>&lt;prenom></i> pour cette nouvelle année.</item>
-        <item></item>
+        <item>" "</item>
     </string-array>
 
     <string-array name="phrases_voeux_a_remplir">//On va utiliser un string array afin de rentrer

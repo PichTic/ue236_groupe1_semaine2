@@ -71,7 +71,7 @@ public class SecondActivity extends AppCompatActivity {
         final String[] toformattext = res.getStringArray(R.array.phrases_voeux_a_remplir);
         voeux.setOriginaltext(originaltext); //Remplissage de l'objet avec les phrase prédéfinies vierges
         voeux.setFormatedtext(toformattext);
-        String[] listvoeux = voeux.getOriginaltext(); //Remplissage d'un array avec la liste des phrases
+        final String[] listvoeux = voeux.getOriginaltext(); //Remplissage d'un array avec la liste des phrases
 
         //Affichage de l'array dans la listview
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -82,15 +82,20 @@ public class SecondActivity extends AppCompatActivity {
         {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id)
             {
-                long[] checkeditem = listViewWish.getCheckedItemIds(); //Fonction qui bloque le choix sur une seule phrase
-                if(checkeditem != null) {
-                    for(int i = 0; i < checkeditem.length; i++)
-                    {
-                        listViewWish.setItemChecked((int)checkeditem[i], false);
+                if(position != (listvoeux.length -1)) {
+                    long[] checkeditem = listViewWish.getCheckedItemIds(); //Fonction qui bloque le choix sur une seule phrase
+                    if (checkeditem != null) {
+                        for (int i = 0; i < checkeditem.length; i++) {
+                            listViewWish.setItemChecked((int) checkeditem[i], false);
+                        }
                     }
+                    listViewWish.setItemChecked(position, true);
+                    voeux.id = position;
+                    voeux.selection = true;
                 }
-                listViewWish.setItemChecked(position, true);
-                voeux.id = position;
+                else {
+                    voeux.selection = false;
+                }
             }
         });
 
@@ -102,14 +107,32 @@ public class SecondActivity extends AppCompatActivity {
         validation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String[] prenom = new String[contacts.size()]; //On récupère les noms de la liste de contact dans un tableau
-                for(int i = 0; i < contacts.size(); i++) {
-                    prenom[i] = contacts.get(i).getNom();
+                if(voeux.selection) {
+                    String[] prenom = new String[contacts.size()]; //On récupère les noms de la liste de contact dans un tableau
+                    for (int i = 0; i < contacts.size(); i++) {
+                        prenom[i] = contacts.get(i).getNom();
+                    }
+                    voeux.setFormatedtext(toformattext);
+                    voeux.Formattext(prenom); //On initialise la phrase choisie avec le(s) prénom(s)
+                    list_voeux_perso = voeux.getFormatedtext(); //On récupère le tableau obtenu ci-dessus
+                    confirmationEnvoi(v);
                 }
-                voeux.setFormatedtext(toformattext);
-                voeux.Formattext(prenom); //On initialise la phrase choisie avec le(s) prénom(s)
-                list_voeux_perso = voeux.getFormatedtext(); //On récupère le tableau obtenu ci-dessus
-                confirmationEnvoi(v);
+                else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SecondActivity.this);
+                    // Titre de l'alertdialog
+                    builder.setTitle("Attention");
+                    // Message de l'alertdialog
+                    builder.setMessage("Vous n'avez pas sélectionné de phrase.");
+                    builder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(getApplicationContext(),
+                                    "Veuillez sélectionner une phrase",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    builder.show();
+                }
             }
         });
 

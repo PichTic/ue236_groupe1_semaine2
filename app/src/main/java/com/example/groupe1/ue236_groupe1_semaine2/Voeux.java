@@ -8,6 +8,7 @@ public class Voeux extends AppCompatActivity {
     public String[] originaltext;
     public String[] formatedtext;
     public int id;
+    public boolean selection;
 
     //Créateur
 
